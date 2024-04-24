@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class Package : MonoBehaviour
 {
+    [SerializeField]
+    private House house;
+
     public float timer;
     public int durability;
     public int deliveryAdress;
 
     public Text timerText;
 
-    public Collider packageCollider;
+    private void Awake()
+    {
+        timer = Random.Range(60f, 600f);
+        durability = Random.Range(2, 10);
+        deliveryAdress = Random.Range(1, 20);
+    }
 
     void Start()
     {
@@ -31,10 +39,7 @@ public class Package : MonoBehaviour
         Expire();
     }
 
-    public void Deliver()
-    {
-        
-    }
+
 
     //player loses package if they take too long or take too much damage
     private void Expire()

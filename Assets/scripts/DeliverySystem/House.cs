@@ -7,10 +7,7 @@ public class House : MonoBehaviour
     public int adress;
     public Collider houseCollider;
 
-    public void OnTriggerEnter(Collider other)
-    {
-        
-    }
+
 
     // Start is called before the first frame update
     void Start()
