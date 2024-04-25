@@ -7,12 +7,27 @@ public class Package : MonoBehaviour
 {
     [SerializeField]
     private House house;
+    [SerializeField]
+    private MailManager mailManager;
+
+    public House House { get => house; }
+    public MailManager Manager { get => mailManager; }
 
     public float timer;
     public int durability;
     public int deliveryAdress;
 
     public Text timerText;
+
+
+    public void Deliver()
+    {
+        if (deliveryAdress == House.adress)
+        {
+            Manager.deliveries += 1;
+            Destroy(this);
+        }
+    }
 
     private void Awake()
     {

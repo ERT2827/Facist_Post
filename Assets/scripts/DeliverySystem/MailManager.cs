@@ -20,14 +20,7 @@ public class MailManager : MonoBehaviour
 
     public GameObject[] shelfSlots = new GameObject[12];
 
-    public void Deliver()
-    {
-        if (Package.deliveryAdress == currentAdress)
-        {
-            deliveries += 1;
-            Package.Destroy(Package);
-        }
-    }
+
 
     public void OnCollisionEnter(Collision collision)
     {
