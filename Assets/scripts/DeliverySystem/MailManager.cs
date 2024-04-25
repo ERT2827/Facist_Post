@@ -18,6 +18,8 @@ public class MailManager : MonoBehaviour
     public int deliveries;
     public int currentAdress;
 
+    public GameObject[] shelfSlots = new GameObject[12];
+
     public void Deliver()
     {
         if (Package.deliveryAdress == currentAdress)
@@ -51,7 +53,7 @@ public class MailManager : MonoBehaviour
         deliveries = 0;
         currentAdress = 0;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
