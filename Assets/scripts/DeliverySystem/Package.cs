@@ -16,13 +16,15 @@ public class Package : MonoBehaviour
     public float timer;
     public int durability;
     public int deliveryAdress;
+    public GameObject adress;
+    
 
     public Text timerText;
 
 
     public void Deliver()
     {
-        if (deliveryAdress == House.adress)
+        if (deliveryAdress == Manager.currentAdress)
         {
             Manager.deliveries += 1;
             Destroy(this);
@@ -33,7 +35,9 @@ public class Package : MonoBehaviour
     {
         timer = Random.Range(60f, 600f);
         durability = Random.Range(2, 10);
-        deliveryAdress = Random.Range(1, 20);
+        Manager.houses = GameObject.FindGameObjectsWithTag("house");
+        deliveryAdress = Random.Range(0,Manager.houses.Length);
+        adress = Manager.houses[deliveryAdress];
     }
 
     void Start()
