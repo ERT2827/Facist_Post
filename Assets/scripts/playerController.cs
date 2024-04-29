@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
+    [Header("Player settings")]
+    
     [SerializeField] private GameObject baller;
     [SerializeField] private float moveSpeed;
     Rigidbody rb;
-    
+
+    [Header("Boost Settings")]
+
+    [SerializeField] private float boostSpeed;
+    [SerializeField] private float boostCoolDown;
+
+    [SerializeField] private float boostPercent;
+    [SerializeField] private float boostDuration;
+
+    float timer;
     
     // Start is called before the first frame update
     void Start()
@@ -16,12 +27,21 @@ public class playerController : MonoBehaviour
         rb = baller.GetComponent<Rigidbody>();
 
         baller.transform.parent = null;
+
+        boostPercent = (100 + boostPercent) / 100;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         applyforce(Input.GetAxisRaw("Horizontal") * moveSpeed, Input.GetAxisRaw("Vertical") * moveSpeed);
+
+        // boost function
+        if(Time.time >= timer && Input.GetKeyDown(KeyCode.LeftShift)){
+            StartCoroutine(boost());
+            timer = Time.time + boostCoolDown;
+        }
 
         if(Input.GetButtonDown("Jump")){
             handbreak();
@@ -30,6 +50,7 @@ public class playerController : MonoBehaviour
         }
 
         transform.position = baller.transform.position;
+
     }
 
 
@@ -39,5 +60,15 @@ public class playerController : MonoBehaviour
 
     void handbreak(){
         rb.drag = 1;
+    }
+
+    IEnumerator boost(){
+        moveSpeed = moveSpeed * boostSpeed;
+
+        Debug.Log("Boosting");
+
+        yield return new WaitForSeconds(boostDuration);
+
+        moveSpeed = moveSpeed / boostSpeed;
     }
 }

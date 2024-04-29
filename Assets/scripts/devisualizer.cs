@@ -5,7 +5,7 @@ using UnityEngine;
 public class devisualizer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.layer != 6){
+        if(other.gameObject.layer == 7){
             Color col = other.gameObject.GetComponent<Renderer>().material.color;
 
 
@@ -17,14 +17,14 @@ public class devisualizer : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        if(other.gameObject.layer != 6){
+        if(other.gameObject.layer == 7){
             Color col = other.gameObject.GetComponent<Renderer>().material.color;
 
 
             col.a = 1f;
 
             other.gameObject.GetComponent<Renderer>().material.color = col;
-                    Debug.Log(other.name);
+            // Debug.Log(other.name);
 
         }
     }
