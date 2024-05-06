@@ -20,12 +20,12 @@ public class MailManager : MonoBehaviour
 
     public int quota;
     public int deliveries;
-    public int currentAdress;
+    public int currentAdress = -1;
 
-    public GameObject[] shelfSlots = new GameObject[12];
+    public GameObject[] packages = new GameObject[12];
 
 
-
+    //tells the player where they are
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.collider == GameObject.FindGameObjectWithTag("house"))
@@ -37,6 +37,7 @@ public class MailManager : MonoBehaviour
         }
     }
 
+    //resets adress
     public void OnCollisionExit(Collision collision)
     {
         if (collision.collider == GameObject.FindGameObjectWithTag("house"))

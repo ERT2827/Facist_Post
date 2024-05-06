@@ -21,7 +21,7 @@ public class Package : MonoBehaviour
 
     public Text timerText;
 
-
+    
     public void Deliver()
     {
         if (deliveryAdress == Manager.currentAdress)
@@ -29,15 +29,21 @@ public class Package : MonoBehaviour
             Manager.deliveries += 1;
             Destroy(this);
         }
+        else
+        {
+            Debug.Log("wrong place");
+        }
     }
 
+    //generates package details randomly
     private void Awake()
     {
         timer = Random.Range(60f, 600f);
         durability = Random.Range(2, 10);
-        Manager.houses = GameObject.FindGameObjectsWithTag("house");
         deliveryAdress = Random.Range(0,Manager.houses.Length);
         adress = Manager.houses[deliveryAdress];
+
+
     }
 
     void Start()
