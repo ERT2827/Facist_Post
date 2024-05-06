@@ -6,11 +6,8 @@ using UnityEngine.UI;
 public class Package : MonoBehaviour
 {
     [SerializeField]
-    private House house;
-    [SerializeField]
     private MailManager mailManager;
 
-    public House House { get => house; }
     public MailManager Manager { get => mailManager; }
 
     public float timer;
@@ -20,17 +17,22 @@ public class Package : MonoBehaviour
     
 
     public Text timerText;
+    public Text adressText;
+    public Slider duraSlider;
+    public GameObject Button;
 
     
     public void Deliver()
     {
         if (deliveryAdress == Manager.currentAdress)
         {
+            Manager.success.Play();
             Manager.deliveries += 1;
-            Destroy(this);
+            gameObject.SetActive(false);
         }
         else
         {
+            Manager.failure.Play();
             Debug.Log("wrong place");
         }
     }
@@ -38,12 +40,21 @@ public class Package : MonoBehaviour
     //generates package details randomly
     private void Awake()
     {
+        GenPac();
+    }
+
+    private void OnEnable()
+    {
+        GenPac();
+    }
+
+    private void GenPac()
+    {
         timer = Random.Range(60f, 600f);
         durability = Random.Range(2, 10);
-        deliveryAdress = Random.Range(0,Manager.houses.Length);
+        duraSlider.maxValue = durability;
+        deliveryAdress = Random.Range(0, Manager.houses.Length);
         adress = Manager.houses[deliveryAdress];
-
-
     }
 
     void Start()
@@ -60,6 +71,8 @@ public class Package : MonoBehaviour
         string timerString = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);
 
         timerText.text = timerString;
+        adressText.text = adress.ToString();
+        duraSlider.value = durability;
 
         Expire();
     }
@@ -71,7 +84,18 @@ public class Package : MonoBehaviour
     {
         if (timer <= 0 ||  durability <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Toggle()
+    {
+        if (Button.activeSelf)
+        {
+            Button.SetActive(false);
+        }else if (!Button.activeSelf)
+        {
+            Button.SetActive(true);
         }
     }
 }

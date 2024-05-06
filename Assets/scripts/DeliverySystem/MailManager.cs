@@ -11,8 +11,6 @@ public class MailManager : MonoBehaviour
     private House house;
 
     public House House { get => house; }
-
-    public Collider Player;
     
 
 
@@ -23,6 +21,9 @@ public class MailManager : MonoBehaviour
     public int currentAdress = -1;
 
     public GameObject[] packages = new GameObject[12];
+
+    public AudioSource success;
+    public AudioSource failure;
 
 
     //tells the player where they are
