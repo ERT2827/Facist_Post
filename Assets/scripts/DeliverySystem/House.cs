@@ -5,6 +5,7 @@ using UnityEngine;
 public class House : MonoBehaviour
 {
     public int adress;
+    public string houseName;
     public Collider houseCollider;
 
 

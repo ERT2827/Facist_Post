@@ -7,8 +7,11 @@ public class Package : MonoBehaviour
 {
     [SerializeField]
     private MailManager mailManager;
+    [SerializeField]
+    private House house;
 
     public MailManager Manager { get => mailManager; }
+    public House House {  get => house; }
 
     public float timer;
     public int durability;
@@ -55,6 +58,7 @@ public class Package : MonoBehaviour
         duraSlider.maxValue = durability;
         deliveryAdress = Random.Range(0, Manager.houses.Length);
         adress = Manager.houses[deliveryAdress];
+        house = adress.GetComponent<House>();
     }
 
     void Start()
@@ -71,7 +75,7 @@ public class Package : MonoBehaviour
         string timerString = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);
 
         timerText.text = timerString;
-        adressText.text = adress.ToString();
+        adressText.text = House.houseName;
         duraSlider.value = durability;
 
         Expire();

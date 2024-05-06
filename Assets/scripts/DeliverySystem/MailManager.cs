@@ -60,6 +60,6 @@ public class MailManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
