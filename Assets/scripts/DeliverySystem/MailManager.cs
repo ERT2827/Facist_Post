@@ -34,6 +34,7 @@ public class MailManager : MonoBehaviour
 
     public Text quotaText;
     public Text timerText;
+    public GameObject button;
 
     public GameObject[] houses;
 
@@ -59,8 +60,13 @@ public class MailManager : MonoBehaviour
     {
         if (quota >= deliveries)
         {
-
+            button.SetActive(true);
         }
+    }
+
+    public void Zero()
+    {
+        timer = 0;
     }
 
     private void Awake()
@@ -112,6 +118,7 @@ public class MailManager : MonoBehaviour
 
         timerText.text = timerString;
         quotaText.text = "Quota: " + deliveries.ToString() + "/" + quota.ToString();
+        MeetQuota();
         End();
     }
 }
