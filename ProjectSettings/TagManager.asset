@@ -6,6 +6,7 @@ TagManager:
   tags:
   - deliveryPoint
   - house
+  - Package
   layers:
   - Default
   - TransparentFX

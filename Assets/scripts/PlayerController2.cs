@@ -34,7 +34,7 @@ public class PlayerController2 : MonoBehaviour
     bool dodging = false;
     Vector3 dodgeDir;
 
-    public GameObject MailManager;
+    public GameObject Inventory;
     
     // Start is called before the first frame update
     void Start()
@@ -75,13 +75,13 @@ public class PlayerController2 : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2"))
         {//shows and hides the inventory
-            if (MailManager.activeSelf == true)
+            if (Inventory.activeSelf == true)
             {
-                MailManager.SetActive(false);
+                Inventory.SetActive(false);
             }
-            else if (!MailManager.activeSelf)
+            else if (!Inventory.activeSelf)
             {
-                MailManager.SetActive(true);
+                Inventory.SetActive(true);
             }
         }
 

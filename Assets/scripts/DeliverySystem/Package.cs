@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +9,17 @@ public class Package : MonoBehaviour
     [SerializeField]
     private MailManager mailManager;
     [SerializeField]
+    private UI_Package ui_package;
+    [SerializeField]
     private House house;
 
     public MailManager Manager { get => mailManager; }
+    public UI_Package UI_Package { get => ui_package; }
     public House House {  get => house; }
 
     public float timer;
     public int durability;
+    public int maxDura;
     public int deliveryAdress;
     public GameObject adress;
     
@@ -24,14 +29,24 @@ public class Package : MonoBehaviour
     public Slider duraSlider;
     public GameObject Button;
 
-    
+
+    private void Awake()
+    {
+        GameObject manager = GameObject.Find("MailManager");
+        mailManager = manager.GetComponent<MailManager>();
+        GameObject ui = GameObject.Find("PackageDisplay");
+        ui_package = ui.GetComponent<UI_Package>();
+        GenPac();
+    }
+
     public void Deliver()
     {
         if (deliveryAdress == Manager.currentAdress)
         {
             Manager.success.Play();
+            Debug.Log("delivered");
             Manager.deliveries += 1;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
         else
         {
@@ -40,30 +55,20 @@ public class Package : MonoBehaviour
         }
     }
 
+
+
+
+
     //generates package details randomly
-    private void Awake()
-    {
-        GenPac();
-    }
-
-    private void OnEnable()
-    {
-        GenPac();
-    }
-
     private void GenPac()
     {
         timer = Random.Range(60f, 600f);
         durability = Random.Range(2, 10);
-        duraSlider.maxValue = durability;
+        maxDura = durability;
+        duraSlider.maxValue = maxDura;
         deliveryAdress = Random.Range(0, Manager.houses.Length);
         adress = Manager.houses[deliveryAdress];
         house = adress.GetComponent<House>();
-    }
-
-    void Start()
-    {
-        
     }
 
     void Update()
@@ -75,20 +80,26 @@ public class Package : MonoBehaviour
         string timerString = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);
 
         timerText.text = timerString;
-        adressText.text = House.houseName;
+        adressText.text = "Deliver to: " + House.houseName;
         duraSlider.value = durability;
 
         Expire();
     }
 
-
+    public void Select()
+    {
+        UI_Package.Package = this;
+        UI_Package.duraSlider.maxValue = maxDura;
+        ui_package.gameObject.SetActive(true);
+    }
 
     //player loses package if they take too long or take too much damage
     private void Expire()
     {
-        if (timer <= 0 ||  durability <= 0)
+        if (timer <= 0 || durability <= 0)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
+            Debug.Log("gone");
         }
     }
 
