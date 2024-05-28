@@ -22,4 +22,16 @@ public class House : MonoBehaviour
     {
         
     }
+
+    private void OnMouseEnter() {
+        Debug.Log(houseName);
+    }
+
+    private void OnMouseOver() {
+        if(Input.GetMouseButtonDown(0)){
+            GameObject mailChatUI = GameObject.Find("Delivery_UI").transform.GetChild(0).gameObject;
+            Debug.Log("Bingo" + mailChatUI);
+            mailChatUI.SetActive(true);
+        }
+    }
 }

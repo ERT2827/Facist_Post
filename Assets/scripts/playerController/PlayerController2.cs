@@ -33,8 +33,6 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] private float dodgeDuration;
     bool dodging = false;
     Vector3 dodgeDir;
-
-    public GameObject Inventory;
     
     // Start is called before the first frame update
     void Start()
@@ -72,20 +70,8 @@ public class PlayerController2 : MonoBehaviour
 
         //Code that moves the actual object
         BallMover();
-
-        if (Input.GetButtonDown("Fire2"))
-        {//shows and hides the inventory
-            if (Inventory.activeSelf == true)
-            {
-                Inventory.SetActive(false);
-            }
-            else if (!Inventory.activeSelf)
-            {
-                Inventory.SetActive(true);
-            }
+    
         }
-
-    }
 
     void movePlayer(){
         Vector3 movement = new Vector3(move.x, 0, move.y);
