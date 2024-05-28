@@ -148,4 +148,10 @@ public class ResourceManager : MonoBehaviour
             playerComfort = max;
         }
     }
+
+    public void ReadStringInput(string s)
+    {
+        dogName = s;
+        Debug.Log(dogName);
+    }
 }
