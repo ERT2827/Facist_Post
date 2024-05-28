@@ -58,7 +58,7 @@ public class MailManager : MonoBehaviour
 
     private void MeetQuota()
     {
-        if (quota >= deliveries)
+        if (quota <= deliveries)
         {
             button.SetActive(true);
         }

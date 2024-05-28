@@ -9,12 +9,12 @@ public class House : MonoBehaviour
     public string houseName;
     public Collider houseCollider;
 
-    public Text houseText;
+    //public Text houseText;
 
     // Start is called before the first frame update
     void Start()
     {
-        houseText.text = houseName;
+        //houseText.text = houseName;
     }
 
     // Update is called once per frame
