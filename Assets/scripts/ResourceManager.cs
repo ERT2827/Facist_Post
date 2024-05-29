@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
-    private bool dogAlive;
+    private bool dogAlive = true;
     public int money;
     public int max;
     
@@ -19,8 +20,20 @@ public class ResourceManager : MonoBehaviour
     private int dogComfort;
     private bool dogFed;
 
+    public Text dogNameText;
+    public Text greetText;
+
+    public Text playerHungerText;
+    public Text playerHealthText;
+    public Text playerComfortText;
+
+    public Text dogHungerText;
+    public Text dogHealthText;
+    public Text dogComfortText;
+
     public void BuyFood(int cost)
     {
+        cost = 100;
         if (money > cost)
         {
             playerFed = true;
@@ -32,6 +45,7 @@ public class ResourceManager : MonoBehaviour
 
     public void BuyDogFood(int cost)
     {
+        cost = 80;
         if (money > cost)
         {
             dogFed = true;
@@ -43,6 +57,7 @@ public class ResourceManager : MonoBehaviour
 
     public void BuyHeat(int cost)
     {
+        cost = 50;
         if (money > cost)
         {
             money -= cost;
@@ -53,6 +68,7 @@ public class ResourceManager : MonoBehaviour
 
     public void BuyPlayerMed(int cost)
     {
+        cost = 60;
         if (money > cost)
         {
             money -= cost;
@@ -62,6 +78,7 @@ public class ResourceManager : MonoBehaviour
 
     public void BuyDogMed(int cost)
     {
+        cost = 60;
         if (money > cost)
         {
             money -= cost;
@@ -113,6 +130,125 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    private void PlayerText()
+    {
+        if (playerHunger < max)
+        {
+            playerHungerText.text = "You feel hungry";
+        }
+        else if (playerHunger < 50)
+        {
+            playerHungerText.text = "You feel very hungry";
+        }
+        else if (playerHunger < 20)
+        {
+            playerHungerText.text = "You are starving";
+        }
+
+        if (playerComfort < 80)
+        {
+            playerComfortText.text = "You feel cold";
+        }
+        else if (playerComfort < 40)
+        {
+            playerComfortText.text = "You feel very cold";
+        }
+        else if (playerComfort < 20)
+        {
+            playerComfortText.text = "You are freezing";
+        }
+
+        if (playerHealth < 80)
+        {
+            playerHealthText.text = "You are sick";
+        }
+        else if (playerHealth < 40)
+        {
+            playerHealthText.text = "You are very sick";
+        }
+        else if (playerHealth < 20)
+        {
+            playerHealthText.text = "You are dying";
+        }
+    }
+
+    private void DogText()
+    {
+        if (dogHunger < max)
+        {
+            dogHungerText.text = dogName + " is hungry";
+        }
+        else if (dogHunger < 50)
+        {
+            dogHungerText.text = dogName + " is very hungry";
+        }
+        else if (dogHunger < 20)
+        {
+            dogHungerText.text = dogName + " is starving";
+        }
+        else if (dogHunger <= 0 || dogHunger >= 80)
+        {
+            dogHungerText.gameObject.SetActive(false);
+        }
+
+        if (dogComfort < 80)
+        {
+            dogComfortText.text = dogName + " is cold";
+        }
+        else if (dogComfort < 40)
+        {
+            dogComfortText.text = dogName + " is very cold";
+        }
+        else if (dogComfort < 20)
+        {
+            dogComfortText.text = dogName + " is freezing";
+        }
+        else if (dogComfort <= 0 || dogComfort >= 80)
+        {
+            dogComfortText.gameObject.SetActive(false);
+        }
+
+        if (dogHealth < 80)
+        {
+            dogHealthText.text = dogName + " is sick";
+        }
+        else if (dogHealth < 40)
+        {
+            dogHealthText.text = dogName + " is very sick";
+        }
+        else if (dogHealth < 20)
+        {
+            dogHealthText.text = dogName + " is dying";
+        }
+        else if (dogHealth <= 0 || dogHealth >= 80)
+        {
+            dogHealthText.gameObject.SetActive(false);
+        }
+    }
+
+    private void Greeting()
+    {
+        if (dogHealth == max)
+        {
+            greetText.text = dogName + " greets you enthusiastically when you enter";
+        }else if (dogHealth < max)
+        {
+            greetText.text = dogName + " greets you when you enter";
+        }else if (dogHealth < 80)
+        {
+            greetText.text = dogName + "'s tail wags as you enter";
+        }else if (dogHealth < 40)
+        {
+            greetText.text = dogName + " whimpers as you enter";
+        }else if (dogHealth < 20)
+        {
+            greetText.text = dogName + " barely moves as you enter";
+        }else if (dogAlive == false)
+        {
+            greetText.text = dogName + " is dead";
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -123,7 +259,16 @@ public class ResourceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(dogHunger > max)
+        dogNameText.text = dogName;
+        PlayerText();
+        DogText();
+        
+        if (dogHealth <= 0)
+        {
+            dogAlive = false;
+        }
+
+        if (dogHunger > max)
         {
             dogHunger = max;
         }
