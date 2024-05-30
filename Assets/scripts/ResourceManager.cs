@@ -115,7 +115,7 @@ public class ResourceManager : MonoBehaviour
         dogComfort -= 20;
     }
 
-    //Randomly controls when health drops; guaranteed health drop at low comfort levels
+    //Randomly controls when health drops, based on comfort level; guaranteed health drop at low comfort levels
     private void PlayerSick()
     {
         int value;
@@ -124,6 +124,7 @@ public class ResourceManager : MonoBehaviour
         {
             playerHealth -= 40;
             playerComfort -= 10;
+            dogComfort -= 10;
         }
     }
 
@@ -135,6 +136,7 @@ public class ResourceManager : MonoBehaviour
         {
             dogHealth -= 40;
             dogComfort -= 10;
+            playerComfort -= 10;
         }
     }
 
@@ -288,7 +290,7 @@ public class ResourceManager : MonoBehaviour
             dogMedButton.gameObject.SetActive(false);
         }
 
-        billsText.text = "After taxes and rent, your total salary comes to " + money;
+        billsText.text = "After taxes and rent, your total salary comes to §" + money;
     }
 
     void Start()
@@ -304,7 +306,7 @@ public class ResourceManager : MonoBehaviour
         PlayerText();
         DogText();
 
-        moneyText.text = "Remaining Balance: " + money.ToString();
+        moneyText.text = "Remaining Balance: §" + money.ToString();
         
         //Unalives dog
         if (dogHealth <= 0)
