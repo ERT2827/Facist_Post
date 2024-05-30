@@ -150,6 +150,10 @@ public class ResourceManager : MonoBehaviour
         {
             playerHungerText.text = "You are starving";
         }
+        else if (playerHunger <= 0 || playerHunger >= 80)
+        {
+            playerHungerText.gameObject.SetActive(false);
+        }
 
         if (playerComfort < 80)
         {
@@ -163,6 +167,10 @@ public class ResourceManager : MonoBehaviour
         {
             playerComfortText.text = "You are freezing";
         }
+        else if (playerComfort <= 0 || playerComfort >= 80)
+        {
+            playerComfortText.gameObject.SetActive(false);
+        }
 
         if (playerHealth < 80)
         {
@@ -175,6 +183,10 @@ public class ResourceManager : MonoBehaviour
         else if (playerHealth < 20)
         {
             playerHealthText.text = "You are dying";
+        }
+        else if (playerHealth <= 0 || playerHealth >= 80)
+        {
+            playerHealthText.gameObject.SetActive(false);
         }
     }
 
@@ -236,10 +248,10 @@ public class ResourceManager : MonoBehaviour
     {
         if (dogHealth == max)
         {
-            greetText.text = dogName + " greets you enthusiastically when you enter";
+            greetText.text = dogName + " greets you enthusiastically as you enter";
         }else if (dogHealth < max)
         {
-            greetText.text = dogName + " greets you when you enter";
+            greetText.text = dogName + " greets you as you enter";
         }else if (dogHealth < 80)
         {
             greetText.text = dogName + "'s tail wags as you enter";
@@ -276,7 +288,7 @@ public class ResourceManager : MonoBehaviour
 
     void Start()
     {
-        
+        Greeting();
     }
 
     // Update is called once per frame
