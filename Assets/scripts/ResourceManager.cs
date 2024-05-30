@@ -31,6 +31,9 @@ public class ResourceManager : MonoBehaviour
     public Text dogHealthText;
     public Text dogComfortText;
 
+    public GameObject playerMedButton;
+    public GameObject dogMedButton; 
+
     public void BuyFood(int cost)
     {
         cost = 100;
@@ -246,6 +249,23 @@ public class ResourceManager : MonoBehaviour
         }else if (dogAlive == false)
         {
             greetText.text = dogName + " is dead";
+        }
+
+        if (playerHealth < 80)
+        {
+            playerMedButton.gameObject.SetActive(true);
+        }else if (playerHealth >= 80)
+        {
+            playerMedButton.gameObject.SetActive(false);
+        }
+
+        if (dogHealth < 80)
+        {
+            dogMedButton.gameObject.SetActive(true);
+        }
+        else if (dogHealth >= 80)
+        {
+            dogMedButton.gameObject.SetActive(false);
         }
     }
 
