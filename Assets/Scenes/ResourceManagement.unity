@@ -542,8 +542,8 @@ MonoBehaviour:
   dogHungerText: {fileID: 1499766053}
   dogHealthText: {fileID: 1525022136}
   dogComfortText: {fileID: 1430221180}
-  playerMedButton: {fileID: 0}
-  dogMedButton: {fileID: 0}
+  playerMedButton: {fileID: 2015565355}
+  dogMedButton: {fileID: 951814380}
 --- !u!114 &293937416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -912,6 +912,11 @@ RectTransform:
   m_AnchoredPosition: {x: 744.86, y: 217.13}
   m_SizeDelta: {x: 430.27, y: 117.06}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &951814380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7948267864324041390, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
+  m_PrefabInstance: {fileID: 289774273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &997805249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2167,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000076942, y: -219.89}
   m_SizeDelta: {x: 578.329, y: 65.86}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2015565355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7948267864324041390, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
+  m_PrefabInstance: {fileID: 1354240503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4376141913525505861
 PrefabInstance:
   m_ObjectHideFlags: 0
