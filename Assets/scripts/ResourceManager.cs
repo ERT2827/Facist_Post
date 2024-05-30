@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
-    public bool dogAlive = true;
+    private bool dogAlive = true;
     public int money;
     public Text moneyText;
     public int max = 100;
-
     public Text billsText;
     
     public int playerHunger;
@@ -37,9 +36,10 @@ public class ResourceManager : MonoBehaviour
     public GameObject playerMedButton;
     public GameObject dogMedButton; 
 
-    public void BuyFood(int cost)
+    //Purchase functions
+    public void BuyFood()
     {
-        cost = 100;
+        int cost = 100;
         if (money > cost)
         {
             playerFed = true;
@@ -49,9 +49,9 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    public void BuyDogFood(int cost)
+    public void BuyDogFood()
     {
-        cost = 80;
+        int cost = 80;
         if (money > cost)
         {
             dogFed = true;
@@ -61,9 +61,9 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    public void BuyHeat(int cost)
+    public void BuyHeat()
     {
-        cost = 50;
+        int cost = 50;
         if (money > cost)
         {
             money -= cost;
@@ -72,9 +72,9 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    public void BuyPlayerMed(int cost)
+    public void BuyPlayerMed()
     {
-        cost = 60;
+        int cost = 60;
         if (money > cost)
         {
             money -= cost;
@@ -82,9 +82,9 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    public void BuyDogMed(int cost)
+    public void BuyDogMed()
     {
-        cost = 60;
+        int cost = 60;
         if (money > cost)
         {
             money -= cost;
@@ -92,6 +92,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    //End of scene function 
     public void Finish()
     {
         if (playerFed == false)
@@ -114,6 +115,7 @@ public class ResourceManager : MonoBehaviour
         dogComfort -= 20;
     }
 
+    //Randomly controls when health drops; guaranteed health drop at low comfort levels
     private void PlayerSick()
     {
         int value;
@@ -136,6 +138,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    //Controls the text for the player's stats
     private void PlayerText()
     {
         if (playerHunger < max)
@@ -190,6 +193,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    //Controls the text for the dog's stats
     private void DogText()
     {
         if (dogHunger < max)
@@ -244,6 +248,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    //Controls the Greeting text and other start of scene functions
     private void Greeting()
     {
         if (dogHealth == max)
@@ -283,7 +288,7 @@ public class ResourceManager : MonoBehaviour
             dogMedButton.gameObject.SetActive(false);
         }
 
-        billsText.text = "After taxes and rent, your total salary comes to" + money;
+        billsText.text = "After taxes and rent, your total salary comes to " + money;
     }
 
     void Start()
@@ -294,17 +299,20 @@ public class ResourceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //keeps text fields up to date
         dogNameText.text = dogName;
         PlayerText();
         DogText();
 
         moneyText.text = "Remaining Balance: " + money.ToString();
         
+        //Unalives dog
         if (dogHealth <= 0)
         {
             dogAlive = false;
         }
 
+        //Prevents runaway stat buildup
         if (dogHunger > max)
         {
             dogHunger = max;
@@ -331,6 +339,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    //Sets the name of the dog to what the player types in text input
     public void ReadStringInput(string s)
     {
         dogName = s;
