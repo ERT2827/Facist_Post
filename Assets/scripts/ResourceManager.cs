@@ -5,19 +5,22 @@ using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
-    private bool dogAlive = true;
+    public bool dogAlive = true;
     public int money;
-    public int max;
+    public Text moneyText;
+    public int max = 100;
+
+    public Text billsText;
     
     public int playerHunger;
     public int playerHealth;
     public int playerComfort;
     private bool playerFed;
 
-    private int dogHunger;    
+    public int dogHunger;    
     private string dogName;
-    private int dogHealth;
-    private int dogComfort;
+    public int dogHealth;
+    public int dogComfort;
     private bool dogFed;
 
     public Text dogNameText;
@@ -267,10 +270,10 @@ public class ResourceManager : MonoBehaviour
         {
             dogMedButton.gameObject.SetActive(false);
         }
+
+        billsText.text = "After taxes and rent, your total salary comes to" + money;
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -282,6 +285,8 @@ public class ResourceManager : MonoBehaviour
         dogNameText.text = dogName;
         PlayerText();
         DogText();
+
+        moneyText.text = "Remaining Balance: " + money.ToString();
         
         if (dogHealth <= 0)
         {

@@ -1556,7 +1556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packageScroll: {fileID: 1299326680}
   packagePref: {fileID: 1569773553632997078, guid: dcc192da5160d3646b8009f9dc7785f1, type: 3}
-  mailBoss: {fileID: 0}
+  mailBoss: {fileID: 1624603062}
   deliveryWindow: {fileID: 2022820912}
 --- !u!114 &443282960
 MonoBehaviour:
