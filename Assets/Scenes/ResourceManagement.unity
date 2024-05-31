@@ -413,6 +413,7 @@ GameObject:
   - component: {fileID: 293937411}
   - component: {fileID: 293937415}
   - component: {fileID: 293937416}
+  - component: {fileID: 293937417}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -545,6 +546,18 @@ MonoBehaviour:
   playerMedButton: {fileID: 2015565355}
   dogMedButton: {fileID: 951814380}
 --- !u!114 &293937416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293937410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a24e0196218b34d9ad1cb92633eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &293937417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
