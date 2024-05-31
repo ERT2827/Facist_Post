@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class deliveryChat : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class deliveryChat : MonoBehaviour
     public GameObject deliveryWindow;
 
     private GameObject infoWindow;
+    private Text currentAddy;
 
     // [[SerializeField] private GameObject[] packageButtons;]
     
@@ -58,5 +60,16 @@ public class deliveryChat : MonoBehaviour
             deliveryWindow.SetActive(false);
             infoWindow.SetActive(false);
         }
+    }
+
+    public void StartDelivery(int cur_address){
+        deliveryWindow.SetActive(true);
+        currentAddy = GameObject.Find("currentHouseText").GetComponent<Text>();
+
+        currentAddy.text = " Address: " + cur_address;
+
+        /* You need to make the button deliver the package that's selected,
+        and also make it so that the info window displays information about the panel.
+        I'll add the minigames later */
     }
 }

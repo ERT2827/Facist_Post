@@ -40,6 +40,10 @@ public class MailManager : MonoBehaviour
 
     public GameObject[] packages = new GameObject[12];
 
+    [Header("Delivery box")]
+
+    [SerializeField] private deliveryChat deliverychat;
+
 
 
     public void End()
@@ -72,6 +76,8 @@ public class MailManager : MonoBehaviour
     private void Awake()
     {
         ui_package.enabled = true;
+
+        deliverychat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
     }
 
     //tells the player object where it is
@@ -120,5 +126,10 @@ public class MailManager : MonoBehaviour
         quotaText.text = "Quota: " + deliveries.ToString() + "/" + quota.ToString();
         MeetQuota();
         End();
+
+        if (Input.GetKeyDown(KeyCode.E) && house != null)
+        {
+            deliverychat.StartDelivery(currentAdress);
+        }
     }
 }
