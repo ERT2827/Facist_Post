@@ -7,6 +7,8 @@ TagManager:
   - deliveryPoint
   - house
   - Package
+  - road
+  - dirt
   layers:
   - Default
   - TransparentFX

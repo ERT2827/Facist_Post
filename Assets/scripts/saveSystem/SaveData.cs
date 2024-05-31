@@ -4,7 +4,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveData
 {
-    public static void SavePlayer(ProgStuff Player){
+    // This script is just generic functions I use to encode and decode data.
+    
+    public static void SavePlayer(saveManager Player){
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.FSCT";
 

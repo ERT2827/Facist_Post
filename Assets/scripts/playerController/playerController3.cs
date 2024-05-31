@@ -16,13 +16,24 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
 
     Vector3 lastLook = new Vector3(0, 0, 1);
 
-    [Header("Dodge")]
-    [SerializeField] private float dodgeSpeed;
-    [SerializeField] private float dodgeDuration;
-    bool dodging = false;
-    Vector3 dodgeDir;
-    bool coolin = false;
-    [SerializeField] private float coolinDuration;
+    // [Header("Dodge")]
+    // [SerializeField] private float dodgeSpeed;
+    // [SerializeField] private float dodgeDuration;
+    // bool dodging = false;
+    // Vector3 dodgeDir;
+    // bool coolin = false;
+    // [SerializeField] private float coolinDuration;
+
+    [Header("Offroad")]
+
+    bool isOnRoad;
+
+    bool gear = false;
+
+    [SerializeField] private LayerMask groundLayers;
+
+    [SerializeField] private int onRoadH;
+    [SerializeField] private int offRoadH;
 
     
     // Start is called before the first frame update
@@ -38,19 +49,17 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
 
         //Dodging code
 
-        if(dodging){
-            transform.Translate(dodgeDir * dodgeSpeed * Time.deltaTime, Space.World);
-        }else if(Input.GetButton("Fire1") && move.magnitude > 0 && !coolin){
-            StartCoroutine(dodgeFunct());
-            Debug.Log("bleepus");
-        }
+        // if(dodging){
+        //     transform.Translate(dodgeDir * dodgeSpeed * Time.deltaTime, Space.World);
+        // }else if(Input.GetButton("Fire1") && move.magnitude > 0 && !coolin){
+        //     StartCoroutine(dodgeFunct());
+        //     Debug.Log("bleepus");
+        // }
     }
 
     private void FixedUpdate() {
-        if(!dodging)
-        {
-            movePlayer();
-        }
+        checkTerrain();
+        movePlayer();
     }
 
     void movePlayer(){
@@ -69,22 +78,45 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
         transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
     }
 
-    IEnumerator dodgeFunct(){
-        dodging = true;
-        dodgeDir = new Vector3(move.x, 0, move.y);
+    void checkTerrain(){
+        RaycastHit hit;
 
-        yield return new WaitForSeconds(dodgeDuration);
+        if(Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity, groundLayers)){
+            if(hit.collider.gameObject.tag == "road"){
+                isOnRoad = true;
+                // Debug.Log(hit.collider.gameObject.name);
+            }else{
+                isOnRoad = false;
+                // Debug.Log(hit.collider.gameObject.name);
+            }
+        }
 
-        dodging = false;
+        if(isOnRoad){
+            moveSpeed = onRoadH;
+        }else if(!isOnRoad){
+            moveSpeed = offRoadH;
+        }
 
-        StartCoroutine(dodgeCooldown());
+        Debug.Log("Is on road? " + isOnRoad);
+
     }
 
-    IEnumerator dodgeCooldown(){
-        coolin = true;
+    // IEnumerator dodgeFunct(){
+    //     dodging = true;
+    //     dodgeDir = new Vector3(move.x, 0, move.y);
 
-        yield return new WaitForSeconds(coolinDuration);
+    //     yield return new WaitForSeconds(dodgeDuration);
 
-        coolin = false;
-    }
+    //     dodging = false;
+
+    //     StartCoroutine(dodgeCooldown());
+    // }
+
+    // IEnumerator dodgeCooldown(){
+    //     coolin = true;
+
+    //     yield return new WaitForSeconds(coolinDuration);
+
+    //     coolin = false;
+    // }
 }

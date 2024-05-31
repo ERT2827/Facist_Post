@@ -9,6 +9,8 @@ public class House : MonoBehaviour
     public string houseName;
     public Collider houseCollider;
 
+    deliveryChat delChat;
+
     //public Text houseText;
 
     // bool houseSelect = false;
@@ -17,10 +19,24 @@ public class House : MonoBehaviour
     void Start()
     {
         //houseText.text = houseName;
+
+        delChat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
     }
 
     // Update is called once per frame
     void Update()
     {}
+
+    private void OnMouseOver() {
+        delChat.HouseDisplay(adress);
+        
+        if(Input.GetMouseButtonDown(0)){
+            delChat.StartDelivery(adress);
+        }
+    }
+
+    private void OnMouseExit() {
+        delChat.HouseDisplay(-1);
+    }
 
 }

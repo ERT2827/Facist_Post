@@ -14,11 +14,18 @@ public class deliveryChat : MonoBehaviour
     private GameObject infoWindow;
     private Text currentAddy;
 
+    private Text currentAddyHover;
+    private GameObject currentAddyHoverGO;
+
+    public int currentViewedAddress;
+
     // [[SerializeField] private GameObject[] packageButtons;]
     
     void Awake()
     {
         infoWindow =  GameObject.Find("InfoWindow");
+        currentAddyHoverGO = GameObject.Find("hoverObject");
+        currentAddyHover = currentAddyHoverGO.transform.GetChild(0).GetComponent<Text>();
         
         if(GameObject.Find("MailManager") != null){
             mailBoss = GameObject.Find("MailManager").GetComponent<MailManager>();
@@ -60,6 +67,14 @@ public class deliveryChat : MonoBehaviour
             deliveryWindow.SetActive(false);
             infoWindow.SetActive(false);
         }
+
+        if(currentViewedAddress >= 0 && currentAddyHover != null){
+            currentAddyHoverGO.SetActive(true);
+            currentAddyHover.text = " Current House: " + currentViewedAddress;
+        }else{
+            currentAddyHoverGO.SetActive(false);   
+        }
+
     }
 
     public void StartDelivery(int cur_address){
@@ -72,4 +87,10 @@ public class deliveryChat : MonoBehaviour
         and also make it so that the info window displays information about the panel.
         I'll add the minigames later */
     }
+
+    public void HouseDisplay(int cur_address){
+        currentViewedAddress = cur_address;
+    }
+
+    // Put in a custom cursor to make this more intuitive
 }

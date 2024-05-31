@@ -85,10 +85,10 @@ public class MailManager : MonoBehaviour
     {
         if (other.CompareTag("deliveryPoint"))
         {
-            Place = other.gameObject;
-            house = Place.GetComponentInParent<House>();
-            currentAdress = House.adress;
-            Debug.Log("arriving at" + currentAdress);
+        Place = other.gameObject;
+        house = Place.GetComponentInParent<House>();
+        currentAdress = House.adress;
+        Debug.Log("arriving at" + currentAdress);
         }
     }
     

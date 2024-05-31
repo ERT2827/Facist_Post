@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgStuff : MonoBehaviour
+public class saveManager : MonoBehaviour
 {
     [Header("Money")]
     
@@ -42,11 +42,11 @@ public class ProgStuff : MonoBehaviour
     private void Start() {
     }
 
-    public void saveUs(){
+    public void saveGame(){
         SaveData.SavePlayer(this);
     }
 
-    public void loadUs(){
+    public void loadGame(){
         Playerdata data = SaveData.LoadPlayer();
         
         slips = data.slips;
@@ -112,6 +112,6 @@ public class ProgStuff : MonoBehaviour
         lastSlips = 0; //This tracks the number of slips from the end of the last level.
     
 
-        saveUs();
+        saveGame();
     }
 }

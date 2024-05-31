@@ -38,7 +38,7 @@ public class Playerdata {
 
     public int lastSlips = 0; //This tracks the number of slips from the end of the last level.
     
-    public Playerdata(ProgStuff Player){
+    public Playerdata(saveManager Player){
     
         slips = Player.slips;
 
