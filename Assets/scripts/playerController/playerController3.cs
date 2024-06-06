@@ -32,20 +32,47 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
 
     [SerializeField] private LayerMask groundLayers;
 
+    /* Having different speeds for on and off road allows the two 
+    gears to have more distinct roles from each other.*/
     [SerializeField] private int onRoadH;
     [SerializeField] private int offRoadH;
+
+    [SerializeField] private int onRoadL;
+    [SerializeField] private int offRoadL;
+
+    GameObject gearUI;
+
+    GameObject stick;
+    GameObject pos1;
+    GameObject pos2;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        gearUI = GameObject.Find("Gear Indicator");
+
+        stick = gearUI.transform.GetChild(1).gameObject;
+        pos1 = gearUI.transform.GetChild(2).gameObject;
+        pos2 = gearUI.transform.GetChild(3).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
         move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        if(Input.GetKeyDown(KeyCode.LeftShift)){
+
+            Debug.Log("Shifting Gears");
+            gear = !gear;
+
+            if(gear){
+                stick.transform.position = pos1.transform.position;
+            }else{
+                stick.transform.position = pos2.transform.position;
+            }
+        }
 
         //Dodging code
 
@@ -60,6 +87,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     private void FixedUpdate() {
         checkTerrain();
         movePlayer();
+        gearShift();
     }
 
     void movePlayer(){
@@ -89,16 +117,26 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
                 isOnRoad = false;
                 // Debug.Log(hit.collider.gameObject.name);
             }
+        }        
+
+        // Debug.Log("Is on road? " + isOnRoad);
+
+    }
+
+    void gearShift(){
+        if(gear){
+            if(isOnRoad){
+                moveSpeed = onRoadH;
+            }else if(!isOnRoad){
+                moveSpeed = offRoadH;
+            }
+        }else{
+            if(isOnRoad){
+                moveSpeed = onRoadL;
+            }else if(!isOnRoad){
+                moveSpeed = offRoadL;
+            }
         }
-
-        if(isOnRoad){
-            moveSpeed = onRoadH;
-        }else if(!isOnRoad){
-            moveSpeed = offRoadH;
-        }
-
-        Debug.Log("Is on road? " + isOnRoad);
-
     }
 
     // IEnumerator dodgeFunct(){
