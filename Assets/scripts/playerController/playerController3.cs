@@ -87,7 +87,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     private void FixedUpdate() {
         checkTerrain();
         movePlayer();
-        gearShift();
+        gearSpeed();
     }
 
     void movePlayer(){
@@ -123,7 +123,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
 
     }
 
-    void gearShift(){
+    void gearSpeed(){
         if(gear){
             if(isOnRoad){
                 moveSpeed = onRoadH;
