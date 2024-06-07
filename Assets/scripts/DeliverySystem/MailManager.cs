@@ -44,6 +44,9 @@ public class MailManager : MonoBehaviour
 
     [SerializeField] private deliveryChat deliverychat;
 
+    [Header("Package generator")]
+    generator_Package genPac;
+
 
 
     public void End()
@@ -78,6 +81,8 @@ public class MailManager : MonoBehaviour
         ui_package.enabled = true;
 
         deliverychat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
+        genPac = gameObject.GetComponent<generator_Package>();
+        genPac.Generate_Package(true);  
     }
 
     //tells the player object where it is
