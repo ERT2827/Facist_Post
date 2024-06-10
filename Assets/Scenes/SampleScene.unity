@@ -4907,6 +4907,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3571775437244622076, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
+      propertyPath: names.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571775437244622076, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
+      propertyPath: names.Array.data[0]
+      value: James
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571775437244622076, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
+      propertyPath: names.Array.data[1]
+      value: Fritz
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571775437244622076, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
+      propertyPath: names.Array.data[2]
+      value: Heinrich
+      objectReference: {fileID: 0}
     - target: {fileID: 9099062217658491787, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
       propertyPath: m_SizeDelta.y
       value: 560

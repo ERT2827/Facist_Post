@@ -10,6 +10,9 @@ public class generator_Package : MonoBehaviour
     [SerializeField] string[] legalPackages;
     [SerializeField] string[] illegalPackages;
 
+    [SerializeField] string[] names;
+    [SerializeField] string date = "12-5-1938";
+
     MailManager mailManager;
 
     private void Awake() {
@@ -26,6 +29,7 @@ public class generator_Package : MonoBehaviour
     public string[] Generate_Package(bool initGen){
         string address; //The integer address the package should be delivered to
         string contents; //The contents of the package
+        string reciever; //The person the package is being delivered to
         // string notes; I'm not planning on implementing this right now because I can't figure out how to make it satisfying.
         string correct; //The bool which determines whether the package is correct
         string legal; //The bool that determines whether the package is legal
@@ -35,6 +39,8 @@ public class generator_Package : MonoBehaviour
         // Delivering an illegal package also has a higher penalty than an incorrect one.
 
         address = Random.Range(0, mailManager.houses.Length - 1).ToString();
+        reciever = names[Random.Range(0, names.Length - 1)];
+
 
         int isCor = Random.Range(0, 100);
         int isLegal = Random.Range(0, 100);
@@ -53,7 +59,7 @@ public class generator_Package : MonoBehaviour
             contents = Generate_Contents(true);
         }
 
-        string[] packageInfo = {address, contents, correct, legal};
+        string[] packageInfo = {address, contents, reciever, date, correct, legal};
 
         Debug.Log(packageInfo[0] + packageInfo[1] + packageInfo[2]);
 
