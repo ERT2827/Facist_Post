@@ -10,7 +10,7 @@ public class deliveryChat : MonoBehaviour
     [SerializeField] private GameObject packagePref;
     [SerializeField] private MailManager mailBoss;
 
-    public int currentPackage;
+    public package2 currentPackage;
     public int currentViewedAddress;
 
     [Header("info windows")]
@@ -57,35 +57,8 @@ public class deliveryChat : MonoBehaviour
         ID_WindowText = ID_Window.transform.GetChild(0).GetComponent<TMP_Text>();
 
         Permit_WindowText = Permit_Window.transform.GetChild(0).GetComponent<TMP_Text>();
-        
-        // if(GameObject.Find("MailManager") != null){
-        //     mailBoss = GameObject.Find("MailManager").GetComponent<MailManager>();
-        
-        //     // Creates the packages in the UI
 
-        //     GameObject[] packages = mailBoss.packages*/;
-
-        //     if(packages != null){
-        //         for (int i = 0; i < packages.Length; i++)
-        //         {
-        //             GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
-        //             myNewPackage.GetComponent<packageButtonScript>().setPackageNumber(i);
-        //         }
-        //     }else{
-        //         for (int i = 0; i < testCorrects.Length; i++)
-        //         {
-        //             GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
-        //             myNewPackage.GetComponent<packageButtonScript>().setPackageNumber(i);
-        //         }
-        // }
-        // }else{
-            for (int i = 0; i < testStrings.Length; i++)
-            {
-                GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
-                myNewPackage.GetComponent<packageButtonScript>().setPackageNumber(i);
-            }
-        //}
-        
+        mailBoss = GameObject.Find("MailManager").GetComponent<MailManager>();
         
         
     }
@@ -127,10 +100,13 @@ public class deliveryChat : MonoBehaviour
 
     // Put in a custom cursor to make this more intuitive
 
-    public void setCurrentPack(int PN){
-        currentPackage = PN;
+    public void setCurrentPack(package2 PackedUp){
+        currentPackage = PackedUp;
+        infoWindow.SetActive(true);
 
-        infoWindowText.SetText(testStrings[PN]);
+        if(PackedUp.info != null){
+            infoWindowText.SetText(PackedUp.info);
+        }
     }
 
     public void openInfo(){
@@ -169,5 +145,37 @@ public class deliveryChat : MonoBehaviour
 
         Permit_WindowText.SetText("");
         ID_WindowText.SetText("");
+    }
+
+    public void createUI(List<GameObject> packs){
+        if(GameObject.Find("MailManager") != null){
+        
+            // Creates the packages in the UI
+
+            if(packs != null){
+                Debug.Log(packs.Count);
+                
+                for (int i = 0; i < packs.Count; i++)
+                {
+                    GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
+                    myNewPackage.GetComponent<packageButtonScript>().setParentPackage(packs[i]);
+                }
+            }else{
+                Debug.Log("Shit");
+            }
+        }
+    }
+
+    public void deliver(){
+        if(currentViewedAddress == currentPackage.address && currentPackage.correct && currentPackage.legal){
+            mailBoss.deliveries += 1;
+            currentPackage.setinactive();
+            Debug.Log("Hooray");
+        }else{
+            currentPackage.setinactive();
+            Debug.Log("Gulag");
+        }
+        
+        
     }
 }

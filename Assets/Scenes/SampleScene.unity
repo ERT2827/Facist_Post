@@ -2222,7 +2222,7 @@ MonoBehaviour:
   packageScroll: {fileID: 1299326680}
   packagePref: {fileID: 3998180441051780567, guid: 01aace69118af4540b8a2d7bf70d46f4, type: 3}
   mailBoss: {fileID: 1624603062}
-  currentPackage: 0
+  currentPackage: {fileID: 0}
   currentViewedAddress: 0
   deliveryWindow: {fileID: 2022820912}
   infoWindow: {fileID: 0}
@@ -2915,7 +2915,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 629377497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 443282959}
+        m_TargetAssemblyTypeName: deliveryChat, Assembly-CSharp
+        m_MethodName: deliver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &629377497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4604,6 +4616,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226317296}
   m_CullTransparentMesh: 1
+--- !u!1 &1230588297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1230588298}
+  m_Layer: 0
+  m_Name: packageInventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1230588298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230588297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 482.39014, y: 170.2459, z: -7.9122734}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1280289535
 GameObject:
   m_ObjectHideFlags: 0
@@ -5669,12 +5712,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1688717314}
     - target: {fileID: 3298740161381524129, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
+      propertyPath: packagePrefab
+      value: 
+      objectReference: {fileID: 6481311743475431786, guid: 72f0fd21d6df43c4aab15a12b0d24879, type: 3}
+    - target: {fileID: 3298740161381524129, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
       propertyPath: houses.Array.size
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3298740161381524129, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
       propertyPath: packages.Array.size
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3298740161381524129, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
       propertyPath: houses.Array.data[0]

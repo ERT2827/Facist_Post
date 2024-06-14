@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class packageButtonScript : MonoBehaviour
 {
     Button thisButton;
-    public int packageNumber;
+    public package2 parentPackage;
     deliveryChat delChat;
 
     private void Start() {
@@ -15,15 +15,21 @@ public class packageButtonScript : MonoBehaviour
 
         delChat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
 
-        transform.GetChild(0).gameObject.GetComponent<Text>().text = "Package " + packageNumber.ToString();
+        transform.GetChild(0).gameObject.GetComponent<Text>().text = "Package " + Random.Range(1000, 9999).ToString();
     }
 
-    public void setPackageNumber(int PN){
-        packageNumber = PN;
+    private void Update() {
+        if(!parentPackage.active){
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void setParentPackage(GameObject PP){
+        parentPackage = PP.GetComponent<package2>();
     }
 
     void setActivePackage(){
-        delChat.setCurrentPack(packageNumber);
+        delChat.setCurrentPack(parentPackage);
     }
 
 

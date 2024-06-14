@@ -7,6 +7,8 @@ public class generator_Package : MonoBehaviour
     [SerializeField] int correctOdds = 50;
     [SerializeField] int legalOdds = 80;
 
+    [SerializeField] int maxDurability = 10;
+
     [SerializeField] string[] legalPackages;
     [SerializeField] string[] illegalPackages;
 
@@ -33,6 +35,7 @@ public class generator_Package : MonoBehaviour
         // string notes; I'm not planning on implementing this right now because I can't figure out how to make it satisfying.
         string correct; //The bool which determines whether the package is correct
         string legal; //The bool that determines whether the package is legal
+        string durability;
 
         // The difference between a package being correct and legal is that legality is something you simply have to learn (as opposed to finding by comparison), making it far more punishing (to reflect facist ideology of being pricks)
         // Illegal packages will never be in your quota, which is to somewhat offset the difficulty.
@@ -40,6 +43,8 @@ public class generator_Package : MonoBehaviour
 
         address = Random.Range(0, mailManager.houses.Length - 1).ToString();
         reciever = names[Random.Range(0, names.Length - 1)];
+
+        durability = Random.Range(0, maxDurability).ToString();
 
 
         int isCor = Random.Range(0, 100);
@@ -59,9 +64,9 @@ public class generator_Package : MonoBehaviour
             contents = Generate_Contents(true);
         }
 
-        string[] packageInfo = {address, contents, reciever, date, correct, legal};
+        string[] packageInfo = {address, contents, reciever, date, correct, legal, durability};
 
-        Debug.Log(packageInfo[0] + packageInfo[1] + packageInfo[2]);
+        Debug.Log(packageInfo[0] + packageInfo[1] + packageInfo[2] + packageInfo[3] + packageInfo[4]);
 
         return packageInfo;
     }

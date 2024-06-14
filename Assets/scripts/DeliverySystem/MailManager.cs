@@ -115,6 +115,8 @@ public class MailManager : MonoBehaviour
         deliveries = 0;
         currentAdress = -1;
         Inventory.SetActive(false);
+
+        setupPackages();
     }
 
     private void Update()
@@ -147,6 +149,8 @@ public class MailManager : MonoBehaviour
 
             packages.Add(pac);
         }
+
+        deliverychat.createUI(packages);
 
     }
 }
