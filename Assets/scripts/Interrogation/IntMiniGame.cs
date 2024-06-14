@@ -38,14 +38,31 @@ public class IntMiniGame : MonoBehaviour
     public GameObject pressObj;
     public string[] selections = new string[3];
     public char pressCorrect;
+    public int difficulty;
 
     private void Start()
     {
         minigameSelect.Clear();
-        minigameSelect.Add(2);
-        minigameSelect.Add(1);
         minigameSelect.Add(0);
+        minigameSelect.Add(1);
+        minigameSelect.Add(2);
 
+        for (var i = 0; i < 3; i++)
+        {
+            var rng = Random.Range(i, 3);
+            var temp = minigameSelect[i];
+            minigameSelect[i] = minigameSelect[rng];
+            minigameSelect[rng] = temp;
+        }
+
+        switch (difficulty)
+        {
+            case 1: minigameSelect.RemoveAt(2); minigameSelect.RemoveAt(1); break;
+            case 2: minigameSelect.RemoveAt(2); break;
+            default: break;
+        }
+
+        Debug.Log(minigameSelect.Count);
 
         RandomMinigame();
     }
@@ -293,7 +310,7 @@ public class IntMiniGame : MonoBehaviour
         }
         else
         {
-            if (Success >= 2)
+            if (Success >= difficulty)
             {
                 Debug.Log("Win");
             }
