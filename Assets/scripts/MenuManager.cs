@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public bool mainMenu;
+    public GameObject mainMenu;
 
     public void QuitGame()
     {
@@ -23,11 +23,18 @@ public class MenuManager : MonoBehaviour
 
     public void OpenMenu()
     {
-        if (Input.GetButton("Cancel"))
+        if (Input.GetButtonDown("Cancel") && mainMenu.activeSelf == false)
         {
-            gameObject.SetActive(true);
+            mainMenu.SetActive(true);
+            Debug.Log("pause");
+        }else if (Input.GetButtonDown("Cancel") && mainMenu.activeSelf == true)
+        {
+            mainMenu.SetActive(false);
         }
     }
 
-
+    private void Update()
+    {
+        OpenMenu();
+    }
 }
