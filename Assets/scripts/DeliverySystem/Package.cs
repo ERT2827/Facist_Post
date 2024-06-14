@@ -17,6 +17,10 @@ public class Package : MonoBehaviour
     public UI_Package UI_Package { get => ui_package; }
     public House House {  get => house; }
 
+    public GameObject player;
+    [SerializeField]
+    private playerController3 playerController;
+
     //public float timer;
     public int durability;
     public int maxDura;
@@ -34,6 +38,8 @@ public class Package : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.Find("player");
+        playerController = player.GetComponent<playerController3>();
         GameObject manager = GameObject.Find("MailManager");
         mailManager = manager.GetComponent<MailManager>();
         GameObject ui = GameObject.Find("PackageDisplay");
@@ -85,6 +91,7 @@ public class Package : MonoBehaviour
         adressText.text = "Deliver to: " + House.houseName;
         duraSlider.value = durability;
 
+        Damage();
         Expire();
     }
 
@@ -103,6 +110,11 @@ public class Package : MonoBehaviour
             Debug.Log("gone");
             Destroy(gameObject);
         }
+    }
+
+    public void Damage()
+    {
+        durability -= playerController.damage;
     }
 
     public void Toggle()
