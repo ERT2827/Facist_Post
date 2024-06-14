@@ -8,6 +8,9 @@ public class saveManager : MonoBehaviour
     
     public int slips = 0;
 
+    [Header("Resources")]
+    public int playerHP = 100;
+
     [Header("Level Unlocks")]
 
     // Level unlocks
@@ -51,6 +54,10 @@ public class saveManager : MonoBehaviour
         
         slips = data.slips;
 
+        // Resources
+
+        playerHP = data.playerHP;
+
         // Level unlocks
         level1Complete = data.level1Complete;
         bestSlip1 = data.bestSlip1; 
@@ -82,6 +89,8 @@ public class saveManager : MonoBehaviour
 
     public void resetprogress(){
         slips = 0;
+
+        playerHP = 100;
 
         level1Complete = false;
         bestSlip1 = 0; 

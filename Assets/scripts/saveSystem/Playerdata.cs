@@ -9,6 +9,9 @@ public class Playerdata {
     // Currency
     public int slips = 0;
 
+    // Resources
+    public int playerHP = 100;
+
     // Level unlocks
     public bool level1Complete = false;
     public int bestSlip1 = 0; //This will save the best score that you've gotten on a given day to go back in a replay.
@@ -41,6 +44,10 @@ public class Playerdata {
     public Playerdata(saveManager Player){
     
         slips = Player.slips;
+
+        // Resources
+
+        playerHP = Player.playerHP;
 
         // Level unlocks
         level1Complete = Player.level1Complete;
