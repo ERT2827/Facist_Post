@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    //public string sceneName;
+    public bool mainMenu;
 
     public void QuitGame()
     {
@@ -20,4 +20,14 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void OpenMenu()
+    {
+        if (Input.GetButton("Cancel"))
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
+
 }
