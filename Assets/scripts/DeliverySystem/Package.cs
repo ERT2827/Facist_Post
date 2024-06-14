@@ -114,7 +114,7 @@ public class Package : MonoBehaviour
 
     public void Damage()
     {
-        durability -= playerController.damage;
+        durability = maxDura - playerController.damage;
     }
 
     public void Toggle()
