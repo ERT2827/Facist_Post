@@ -5,21 +5,20 @@ using UnityEngine;
 public class package_Button : MonoBehaviour
 {
     
-    private GameObject infoWindow;
+    private deliveryChat delChat;
+
+    private string[] infoArray;
 
 
     private void Awake() {
-        infoWindow =  GameObject.Find("InfoWindow");
+        delChat =  GameObject.Find("Delivery Window").GetComponent<deliveryChat>();
     }
 
-    private void Start() {
-        if (infoWindow != null) {
-            infoWindow.SetActive(false);
-        }
+    public void getInfo(string[] a){
+        infoArray = a;
     }
-
 
     public void openPackageInfo(){
-        infoWindow.SetActive(true);
+        delChat.openInfo();
     }
 }

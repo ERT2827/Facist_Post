@@ -29,6 +29,8 @@ public class Package : MonoBehaviour
     public Slider duraSlider;
     public GameObject Button;
 
+    public string[] packageInfo;
+
 
     private void Awake()
     {

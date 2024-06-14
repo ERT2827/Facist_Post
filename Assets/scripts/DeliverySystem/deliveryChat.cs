@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class deliveryChat : MonoBehaviour
 {
@@ -9,48 +10,81 @@ public class deliveryChat : MonoBehaviour
     [SerializeField] private GameObject packagePref;
     [SerializeField] private MailManager mailBoss;
 
+    public int currentPackage;
+    public int currentViewedAddress;
+
+    [Header("info windows")]
+    
     public GameObject deliveryWindow;
 
-    private GameObject infoWindow;
+    public GameObject infoWindow; //These two control the info window on the right
+    TMP_Text infoWindowText;
+    
     private Text currentAddy;
-
     private Text currentAddyHover;
     private GameObject currentAddyHoverGO;
 
-    public int currentViewedAddress;
+    [SerializeField] GameObject ID_Window;
+    private TMP_Text ID_WindowText;
+    [SerializeField] GameObject Permit_Window;
+    private TMP_Text Permit_WindowText;
 
     // [[SerializeField] private GameObject[] packageButtons;]
+
+    [Header("Test Variables")]
+    public string[] testStrings;
+    public bool[] testCorrects;
+
+    [Header("Comparison text")]
+
+    string ID_Text;
+    string permit_Text;
+
+    List<string> ID_Texts = new List<string>();
+    List<string> permit_Texts = new List<string>();
+
+    [Header("Housechecks")]
+    [SerializeField] List<int> visitedHouses = new List<int>();
     
     void Awake()
     {
         infoWindow =  GameObject.Find("InfoWindow");
+        infoWindowText = infoWindow.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+
         currentAddyHoverGO = GameObject.Find("hoverObject");
         currentAddyHover = currentAddyHoverGO.transform.GetChild(0).GetComponent<Text>();
-        
-        if(GameObject.Find("MailManager") != null){
-            mailBoss = GameObject.Find("MailManager").GetComponent<MailManager>();
-        
-            // Creates the packages in the UI
 
-            GameObject[] packages = mailBoss.packages;
+        ID_WindowText = ID_Window.transform.GetChild(0).GetComponent<TMP_Text>();
 
-            if(packages != null){
-                foreach (var i in packages){
-                    GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
-                    // packageButtons.
-                }
-            }else{
-                for (int i = 0; i < 8; i++)
-                {
-                    GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
-                }
-        }
-        }else{
-            for (int i = 0; i < 8; i++)
+        Permit_WindowText = Permit_Window.transform.GetChild(0).GetComponent<TMP_Text>();
+        
+        // if(GameObject.Find("MailManager") != null){
+        //     mailBoss = GameObject.Find("MailManager").GetComponent<MailManager>();
+        
+        //     // Creates the packages in the UI
+
+        //     GameObject[] packages = mailBoss.packages*/;
+
+        //     if(packages != null){
+        //         for (int i = 0; i < packages.Length; i++)
+        //         {
+        //             GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
+        //             myNewPackage.GetComponent<packageButtonScript>().setPackageNumber(i);
+        //         }
+        //     }else{
+        //         for (int i = 0; i < testCorrects.Length; i++)
+        //         {
+        //             GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
+        //             myNewPackage.GetComponent<packageButtonScript>().setPackageNumber(i);
+        //         }
+        // }
+        // }else{
+            for (int i = 0; i < testStrings.Length; i++)
             {
                 GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
+                myNewPackage.GetComponent<packageButtonScript>().setPackageNumber(i);
             }
-        }
+        //}
         
         
         
@@ -64,8 +98,7 @@ public class deliveryChat : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape)){
-            deliveryWindow.SetActive(false);
-            infoWindow.SetActive(false);
+            closeDeliveryUI();
         }
 
         if(currentViewedAddress >= 0 && currentAddyHover != null){
@@ -93,4 +126,48 @@ public class deliveryChat : MonoBehaviour
     }
 
     // Put in a custom cursor to make this more intuitive
+
+    public void setCurrentPack(int PN){
+        currentPackage = PN;
+
+        infoWindowText.SetText(testStrings[PN]);
+    }
+
+    public void openInfo(){
+        
+    }
+
+    public void openPermitWindow(){
+        if(!visitedHouses.Contains(currentViewedAddress)){
+            visitedHouses.Add(currentViewedAddress);
+            string temp = "bogos binted";//genPack.generatePermit(isPackageAddress, packageDetails);
+            permit_Text = temp;
+            permit_Texts.Add(temp);
+        }else{
+
+            Debug.Log("Repeat customer");
+            int i = visitedHouses.IndexOf(currentViewedAddress);
+            permit_Text = permit_Texts[i];
+        }
+
+        Permit_Window.SetActive(true);
+        ID_Window.SetActive(false);
+        Permit_WindowText.SetText(permit_Text);
+
+
+    }
+    
+    public void openIDWindow(){
+
+    }
+
+    public void closeDeliveryUI(){
+        Permit_Window.SetActive(false);
+        ID_Window.SetActive(false);
+        deliveryWindow.SetActive(false);
+        infoWindow.SetActive(false);
+
+        Permit_WindowText.SetText("");
+        ID_WindowText.SetText("");
+    }
 }

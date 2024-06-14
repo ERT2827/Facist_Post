@@ -22,8 +22,6 @@ public class MailManager : MonoBehaviour
 
     public Collider player;
 
-    public GameObject Inventory;
-
     public int quota;
     public int deliveries;
     public int currentAdress = -1;
@@ -38,8 +36,6 @@ public class MailManager : MonoBehaviour
 
     public GameObject[] houses;
 
-    public GameObject[] packages = new GameObject[12];
-
     [Header("Delivery box")]
 
     [SerializeField] private deliveryChat deliverychat;
@@ -47,7 +43,10 @@ public class MailManager : MonoBehaviour
     [Header("Package generator")]
     generator_Package genPac;
 
-
+    [Header("New inventory")]
+    public GameObject Inventory;
+    public GameObject packagePrefab;
+    public List<GameObject> packages = new List<GameObject>();
 
     public void End()
     {
@@ -82,7 +81,6 @@ public class MailManager : MonoBehaviour
 
         deliverychat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
         genPac = gameObject.GetComponent<generator_Package>();
-        genPac.Generate_Package(true);  
     }
 
     //tells the player object where it is
@@ -136,5 +134,19 @@ public class MailManager : MonoBehaviour
         {
             deliverychat.StartDelivery(currentAdress);
         }
+    }
+
+    void setupPackages(){
+        Inventory = GameObject.Find("packageInventory");
+        
+        for (int i = 0; i < quota; i++)
+        {
+            GameObject pac = Instantiate(packagePrefab, Inventory.transform);
+            string[] packInfo = genPac.Generate_Package(true);
+            pac.GetComponent<package2>().setValues(packInfo);
+
+            packages.Add(pac);
+        }
+
     }
 }
