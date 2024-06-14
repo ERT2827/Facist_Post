@@ -11,6 +11,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     [Header("Movement")]
 
     public float moveSpeed = 10;
+    public int damage;
 
     Vector2 move;
 
@@ -137,6 +138,11 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
                 moveSpeed = offRoadL;
             }
         }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        damage++; 
     }
 
     // IEnumerator dodgeFunct(){
