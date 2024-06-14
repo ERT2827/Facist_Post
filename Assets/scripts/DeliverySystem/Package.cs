@@ -17,7 +17,7 @@ public class Package : MonoBehaviour
     public UI_Package UI_Package { get => ui_package; }
     public House House {  get => house; }
 
-    public float timer;
+    //public float timer;
     public int durability;
     public int maxDura;
     public int deliveryAdress;
@@ -64,7 +64,7 @@ public class Package : MonoBehaviour
     //generates package details randomly
     private void GenPac()
     {
-        timer = Random.Range(60f, 600f);
+        //timer = Random.Range(60f, 600f);
         durability = Random.Range(2, 10);
         maxDura = durability;
         duraSlider.maxValue = maxDura;
@@ -75,13 +75,13 @@ public class Package : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
+        /*timer -= Time.deltaTime;
         int seconds = (int)(timer % 60);
         int minutes = (int)(timer / 60) % 60;
         int hours = (int)(timer / 3600) % 24;
-        string timerString = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);
+        string timerString = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);*/
 
-        timerText.text = timerString;
+        //timerText.text = timerString;
         adressText.text = "Deliver to: " + House.houseName;
         duraSlider.value = durability;
 
@@ -98,10 +98,10 @@ public class Package : MonoBehaviour
     //player loses package if they take too long or take too much damage
     private void Expire()
     {
-        if (timer <= 0 || durability <= 0)
+        if (durability <= 0)
         {
-            Destroy(gameObject);
             Debug.Log("gone");
+            Destroy(gameObject);
         }
     }
 
