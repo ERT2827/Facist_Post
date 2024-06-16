@@ -45,6 +45,9 @@ public class deliveryChat : MonoBehaviour
 
     [Header("Housechecks")]
     [SerializeField] List<int> visitedHouses = new List<int>();
+
+    [Header("Day specific variables")]
+    [SerializeField] private bool day1;
     
     void Awake()
     {
@@ -167,7 +170,10 @@ public class deliveryChat : MonoBehaviour
     }
 
     public void deliver(){
-        if(currentViewedAddress == currentPackage.address && currentPackage.correct && currentPackage.legal){
+        if(day1){
+            mailBoss.deliveries += 1;
+            currentPackage.setinactive();
+        }else if(currentViewedAddress == currentPackage.address && currentPackage.correct && currentPackage.legal){
             mailBoss.deliveries += 1;
             currentPackage.setinactive();
             Debug.Log("Hooray");

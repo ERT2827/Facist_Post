@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class House : MonoBehaviour
 {
-    public int adress;
-    public string houseName;
+    public int adress = 0;
     public Collider houseCollider;
 
     public GameObject houseObject;
@@ -36,6 +35,8 @@ public class House : MonoBehaviour
 
     private void OnMouseOver() {
         delChat.HouseDisplay(adress);
+
+        Debug.Log("Piss");
         
         if(Input.GetMouseButtonDown(0)){
             delChat.StartDelivery(adress);

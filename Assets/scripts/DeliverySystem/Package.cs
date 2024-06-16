@@ -88,7 +88,7 @@ public class Package : MonoBehaviour
         string timerString = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);*/
 
         //timerText.text = timerString;
-        adressText.text = "Deliver to: " + House.houseName;
+        adressText.text = "Deliver to: House " + House.adress.ToString();
         duraSlider.value = durability;
 
         Damage();
