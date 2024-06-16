@@ -80,6 +80,8 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
             }
         }
 
+        EngineAudio();
+
         //Dodging code
 
         // if(dodging){
@@ -100,7 +102,18 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     {
         if (gear)
         {
-            //engineAudio.pitch = 
+            engineAudio.pitch = 1;
+        }else
+        {
+            engineAudio.pitch = 0.5f;
+        }
+
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        {
+            engineAudio.Play();
+        }else
+        {
+            engineAudio.Pause();
         }
     }
 
