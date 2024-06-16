@@ -74,7 +74,7 @@ public class Package : MonoBehaviour
         durability = Random.Range(2, 10);
         maxDura = durability;
         duraSlider.maxValue = maxDura;
-        deliveryAdress = Random.Range(0, Manager.houses.Length);
+        deliveryAdress = Random.Range(0, Manager.houses.Count);
         adress = Manager.houses[deliveryAdress];
         house = adress.GetComponent<House>();
     }

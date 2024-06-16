@@ -41,7 +41,7 @@ public class generator_Package : MonoBehaviour
         // Illegal packages will never be in your quota, which is to somewhat offset the difficulty.
         // Delivering an illegal package also has a higher penalty than an incorrect one.
 
-        address = Random.Range(0, mailManager.houses.Length - 1).ToString();
+        address = Random.Range(0, mailManager.houses.Count - 1).ToString();
         reciever = names[Random.Range(0, names.Length - 1)];
 
         durability = Random.Range(0, maxDurability).ToString();

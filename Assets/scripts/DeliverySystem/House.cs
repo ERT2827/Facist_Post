@@ -9,6 +9,8 @@ public class House : MonoBehaviour
     public string houseName;
     public Collider houseCollider;
 
+    public GameObject houseObject;
+
     deliveryChat delChat;
 
     //public Text houseText;
@@ -20,7 +22,12 @@ public class House : MonoBehaviour
     {
         //houseText.text = houseName;
 
-        delChat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
+        if(GameObject.Find("Delivery_UI").GetComponent<deliveryChat>() != null){
+            delChat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
+        };
+
+        houseCollider = gameObject.GetComponent<Collider>();
+        houseObject = gameObject;
     }
 
     // Update is called once per frame
@@ -37,6 +44,12 @@ public class House : MonoBehaviour
 
     private void OnMouseExit() {
         delChat.HouseDisplay(-1);
+    }
+
+    public void setAdress(int addy){
+        adress = addy;
+
+        transform.GetChild(transform.childCount -1).gameObject.GetComponent<signScript>().setDisplay(addy);
     }
 
 }

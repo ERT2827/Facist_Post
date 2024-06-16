@@ -34,7 +34,7 @@ public class MailManager : MonoBehaviour
     public Text timerText;
     public GameObject button;
 
-    public GameObject[] houses;
+    public List<GameObject> houses;
 
     [Header("Delivery box")]
 
@@ -152,5 +152,18 @@ public class MailManager : MonoBehaviour
 
         deliverychat.createUI(packages);
 
+    }
+
+    void createAddresses(){
+        var f = GameObject.Find("Buildings").transform.childCount;
+        
+        for (int i = 0; i < f; i++)
+        {
+            GameObject tempHouse = GameObject.Find("Buildings").transform.GetChild(i).gameObject;
+
+            tempHouse.GetComponent<House>().setAdress(i);
+            
+            houses.Add(tempHouse);
+        }
     }
 }

@@ -47,7 +47,10 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     GameObject pos1;
     GameObject pos2;
 
-    
+    public AudioSource engineAudio;
+    //public Rigidbody playerRB;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +60,8 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
         pos1 = gearUI.transform.GetChild(2).gameObject;
         pos2 = gearUI.transform.GetChild(3).gameObject;
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -89,6 +94,14 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
         checkTerrain();
         movePlayer();
         gearSpeed();
+    }
+
+    private void EngineAudio()
+    {
+        if (gear)
+        {
+            //engineAudio.pitch = 
+        }
     }
 
     void movePlayer(){
