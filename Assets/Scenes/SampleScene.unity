@@ -9839,6 +9839,7 @@ MonoBehaviour:
   intController: {fileID: 0}
   intMini: {fileID: 0}
   fine: 0
+  interrogationDifficulty: 1
   mailManager: {fileID: 0}
 --- !u!1 &561083866
 GameObject:
