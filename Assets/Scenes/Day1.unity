@@ -29294,6 +29294,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1688717314}
     - target: {fileID: 3298740161381524129, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
+      propertyPath: nextScene
+      value: ResourceManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298740161381524129, guid: f5c72c502c9dcaa4dbc677527664ecc9, type: 3}
       propertyPath: quotaText
       value: 
       objectReference: {fileID: 1464838915}
