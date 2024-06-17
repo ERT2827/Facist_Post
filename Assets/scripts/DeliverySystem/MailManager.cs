@@ -52,6 +52,7 @@ public class MailManager : MonoBehaviour
     public List<GameObject> packages = new List<GameObject>();
 
     public string nextScene;
+    public int fine;
 
     public void End()
     {
@@ -63,6 +64,7 @@ public class MailManager : MonoBehaviour
             }
 
             globalVariables.money += deliveries * 5;
+            globalVariables.money -= fine;
             performanceAdequate = false;
             //Loads the next scene. 
             SceneManager.LoadScene(nextScene);
@@ -102,7 +104,7 @@ public class MailManager : MonoBehaviour
     //     Debug.Log("arriving at" + currentAdress);
     //     }
     // }
-    
+
 
     //resets adress
     // public void OnTriggerExit(Collider other)
@@ -124,7 +126,7 @@ public class MailManager : MonoBehaviour
         // currentAdress = -1;
         Inventory.SetActive(false);
 
-        
+
         createAddresses();
         genPac.setPossibleAdresses(houses.Count - 1);
         setupPackages();
@@ -139,11 +141,12 @@ public class MailManager : MonoBehaviour
         string timerString = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);
 
         timerText.text = timerString;
-        quotaText.SetText( "Quota: " + quota.ToString() + "\nDeliveries: " + deliveries.ToString() );
+        quotaText.SetText("Quota: " + quota.ToString() + "\nDeliveries: " + deliveries.ToString());
         MeetQuota();
         End();
 
-        if(deliverychat.inactivePackages >= quota){
+        if (deliverychat.inactivePackages >= quota)
+        {
             setupPackages();
             deliverychat.inactivePackages = 0;
         }
@@ -154,9 +157,10 @@ public class MailManager : MonoBehaviour
         // }
     }
 
-    void setupPackages(){
+    void setupPackages()
+    {
         Inventory = GameObject.Find("packageInventory");
-        
+
         for (int i = 0; i < quota; i++)
         {
             GameObject pac = Instantiate(packagePrefab, Inventory.transform);
@@ -170,7 +174,8 @@ public class MailManager : MonoBehaviour
 
     }
 
-    void morePackages(){
+    void morePackages()
+    {
         for (int i = 0; i < quota; i++)
         {
             GameObject pac = Instantiate(packagePrefab, Inventory.transform);
@@ -183,15 +188,16 @@ public class MailManager : MonoBehaviour
         deliverychat.createUI(packages);
     }
 
-    void createAddresses(){
+    void createAddresses()
+    {
         var f = GameObject.Find("Buildings").transform.childCount;
-        
+
         for (int i = 0; i < f; i++)
         {
             GameObject tempHouse = GameObject.Find("Buildings").transform.GetChild(i).gameObject;
 
             tempHouse.GetComponent<House>().setAdress(i);
-            
+
             houses.Add(tempHouse);
         }
     }

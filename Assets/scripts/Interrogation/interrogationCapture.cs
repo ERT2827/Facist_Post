@@ -8,6 +8,10 @@ public class interrogationCapture : MonoBehaviour
     [SerializeField] private GameObject intController;
     [SerializeField] private IntMiniGame intMini;
 
+    [SerializeField] private int fine;
+
+    public MailManager mailManager;
+
 
     private void Awake()
     {
@@ -30,6 +34,7 @@ public class interrogationCapture : MonoBehaviour
             intController.SetActive(true);
 
             // Interrogation start
+            intController.GetComponent<IntMiniGame>().intCapture = this;
             intController.GetComponent<IntMiniGame>().StartInterrogation();
         }
     }
@@ -41,8 +46,9 @@ public class interrogationCapture : MonoBehaviour
 
         if (!win)
         {
-
+            mailManager.fine += fine;
         }
 
+        Destroy(this);
     }
 }
