@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
-    public bool dogAlive = true;
     public int money;
     public Text moneyText;
     public int max = 100;
     public Text billsText;
-    
+
+    public int inflation;
+
+    //These are the variables that need to be saved
+
+    public bool dogAlive = true;
     public int playerHunger;
     public int playerHealth;
     public int playerComfort;
@@ -21,6 +25,8 @@ public class ResourceManager : MonoBehaviour
     public int dogHealth;
     public int dogComfort;
     private bool dogFed;
+
+    //These do not need to be saved
 
     public Text dogNameText;
     public Text greetText;
@@ -37,34 +43,36 @@ public class ResourceManager : MonoBehaviour
     public GameObject dogMedButton;
     public GameObject panel;
 
+    
+
     //Purchase functions
     public void BuyFood()
     {
-        int cost = 100;
+        int cost = 100 * inflation;
         if (money > cost)
         {
             playerFed = true;
             money -= cost;
-            playerHunger += 100;
+            playerHunger += 50;
             playerComfort += 20;
         }
     }
 
     public void BuyDogFood()
     {
-        int cost = 80;
+        int cost = 80 * inflation;
         if (money > cost)
         {
             dogFed = true;
             money -= cost;
-            dogHunger += 100;
+            dogHunger += 50;
             dogComfort += 20;
         }
     }
 
     public void BuyHeat()
     {
-        int cost = 50;
+        int cost = 50 * inflation;
         if (money > cost)
         {
             money -= cost;
@@ -75,7 +83,7 @@ public class ResourceManager : MonoBehaviour
 
     public void BuyPlayerMed()
     {
-        int cost = 60;
+        int cost = 60 * inflation;
         if (money > cost)
         {
             money -= cost;
@@ -85,7 +93,7 @@ public class ResourceManager : MonoBehaviour
 
     public void BuyDogMed()
     {
-        int cost = 60;
+        int cost = 60 * inflation;
         if (money > cost)
         {
             money -= cost;
@@ -99,21 +107,32 @@ public class ResourceManager : MonoBehaviour
         if (playerFed == false)
         {
             playerHunger -= 40;
-            playerComfort -= 10;
-            dogComfort -= 10;
+            playerComfort -= 20;
+            dogComfort -= 20;
         }
 
         if (dogFed == false)
         {
             dogHunger -= 40;
-            dogComfort -= 10;
-            playerComfort -= 10;
+            dogComfort -= 20;
+            playerComfort -= 20;
         }
 
         PlayerSick();
         DogSick();
         playerComfort -= 20;
         dogComfort -= 20;
+
+        globalVariables.money = money;
+
+        globalVariables.dogAlive = dogAlive;
+        globalVariables.playerHunger = playerHunger;
+        globalVariables.playerHealth = playerHealth;
+        globalVariables.playerComfort = playerComfort;
+        globalVariables.dogName = dogName;
+        globalVariables.dogHunger = dogHunger;
+        globalVariables.dogHealth = dogHealth;
+        globalVariables.dogComfort = dogComfort;
     }
 
     //Randomly controls when health drops, based on comfort level; guaranteed health drop at low comfort levels
@@ -121,11 +140,11 @@ public class ResourceManager : MonoBehaviour
     {
         int value;
         value = Random.Range(playerComfort, 100);
-        if (value <= 60 || playerComfort < 20)
+        if (value <= 60 || playerComfort < 40)
         {
             playerHealth -= 40;
-            playerComfort -= 10;
-            dogComfort -= 10;
+            playerComfort -= 20;
+            dogComfort -= 20;
         }
     }
 
@@ -133,11 +152,11 @@ public class ResourceManager : MonoBehaviour
     {
         int value;
         value = Random.Range(dogComfort, 100);
-        if (value <= 60 || dogComfort < 20)
+        if (value <= 60 || dogComfort < 40)
         {
             dogHealth -= 40;
-            dogComfort -= 10;
-            playerComfort -= 10;
+            dogComfort -= 20;
+            playerComfort -= 20;
         }
     }
 
@@ -300,6 +319,17 @@ public class ResourceManager : MonoBehaviour
         {
             panel.SetActive(true);
         }
+
+        money = globalVariables.money;
+
+        dogAlive = globalVariables.dogAlive;
+        playerHunger = globalVariables.playerHunger;
+        playerHealth = globalVariables.playerHealth;
+        playerComfort = globalVariables.playerComfort;
+        dogName = globalVariables.dogName;
+        dogHunger = globalVariables.dogHunger;
+        dogHealth = globalVariables.dogHealth;
+        dogComfort = globalVariables.dogComfort;
     }
 
     void Start()
