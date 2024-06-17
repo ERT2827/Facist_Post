@@ -49,7 +49,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
 
     public AudioSource engineAudio;
     public bool isMoving;
-    //public Rigidbody playerRB;
+    public Rigidbody playerRB;
 
 
     // Start is called before the first frame update
@@ -109,23 +109,12 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
             engineAudio.pitch = 0.4f;
         }
 
-        if (isMoving)
-        {
-            engineAudio.Play();
-        }else if (!isMoving)
-        {
-            engineAudio.Pause();
-        }
-
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
-            isMoving = true;
-            Debug.Log("go");
-        }
-        else if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
+            engineAudio.Play();
+        }else if (!Input.GetButton("Horizontal") && !Input.GetButton("Vertical"))
         {
-            isMoving = false;
-            Debug.Log("stop");
+            engineAudio.Pause();
         }
     }
 
