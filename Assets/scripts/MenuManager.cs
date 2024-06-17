@@ -35,6 +35,9 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        OpenMenu();
+        if (globalVariables.UI_Open == false)
+        {
+            OpenMenu();
+        }
     }
 }
