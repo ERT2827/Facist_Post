@@ -126,6 +126,8 @@ public class ResourceManager : MonoBehaviour
 
         PlayerSick();
         DogSick();
+        playerHealth -= 10;
+        dogHealth -= 10;
         playerComfort -= 35;
         dogComfort -= 35;
 
