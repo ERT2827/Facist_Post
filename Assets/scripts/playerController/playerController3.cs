@@ -102,16 +102,25 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     {
         if (gear)
         {
-            engineAudio.pitch = 1;
+            engineAudio.pitch = 0.8f;
         }else
         {
             engineAudio.pitch = 0.5f;
         }
 
-        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        if (Input.GetButtonDown("Horizontal"))
         {
             engineAudio.Play();
-        }else
+        }else if (Input.GetButtonUp("Horizontal"))
+        {
+            engineAudio.Pause();
+        }
+
+        if (Input.GetButtonDown("Vertical"))
+        {
+            engineAudio.Play();
+        }
+        else if (Input.GetButtonUp("Vertical"))
         {
             engineAudio.Pause();
         }

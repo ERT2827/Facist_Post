@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
-    private bool dogAlive = true;
+    public bool dogAlive = true;
     public int money;
     public Text moneyText;
     public int max = 100;
@@ -17,7 +17,7 @@ public class ResourceManager : MonoBehaviour
     private bool playerFed;
 
     public int dogHunger;    
-    private string dogName;
+    public string dogName;
     public int dogHealth;
     public int dogComfort;
     private bool dogFed;
@@ -34,7 +34,8 @@ public class ResourceManager : MonoBehaviour
     public Text dogComfortText;
 
     public GameObject playerMedButton;
-    public GameObject dogMedButton; 
+    public GameObject dogMedButton;
+    public GameObject panel;
 
     //Purchase functions
     public void BuyFood()
@@ -291,6 +292,14 @@ public class ResourceManager : MonoBehaviour
         }
 
         billsText.text = "After taxes and rent, your total salary comes to §" + money;
+    }
+
+    private void Awake()
+    {
+        if (dogName == "")
+        {
+            panel.SetActive(true);
+        }
     }
 
     void Start()
