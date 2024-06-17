@@ -118,6 +118,7 @@ public class MailManager : MonoBehaviour
 
         
         createAddresses();
+        genPac.setPossibleAdresses(houses.Count - 1);
         setupPackages();
     }
 

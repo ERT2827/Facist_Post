@@ -9,6 +9,10 @@ public class package2 : MonoBehaviour
     public bool correct = true;
     public bool legal = false;
     public int PIN = 0000;
+    public string contents = "";
+    public string date = "";
+    public string reciever = "";
+    public int ID = 111111111;
 
     [Header("Active status")]
     public bool active = true;
@@ -17,10 +21,16 @@ public class package2 : MonoBehaviour
     public void setValues(string[] values){
         int.TryParse(values[0], out address);
         correct = bool.Parse(values[4]);
-        legal = bool.Parse(values[5]);
-        int.TryParse(values[6], out durability);
+        int.TryParse(values[5], out durability);
+        int.TryParse(values[6], out ID);
 
-        info = "Address: " + address + "\nContents: " + values[1] + "\nReciever: " + values[2] + "\nDate: " + values[3];
+        contents = values[1];
+        date = values[3];
+        reciever = values[2];
+
+        info = "Address: " + address + "\nContents: " + contents + "\nReciever: " + reciever + "\nDate: " + date + "\nID: " + ID;
+
+        
 
         PIN = Random.Range(0001, 9999);
     }

@@ -12,6 +12,9 @@ public class deliveryChat : MonoBehaviour
 
     public package2 currentPackage;
     public int currentViewedAddress;
+    public int previewAddress;
+
+    [SerializeField] private generator_Package genPack;
 
     [Header("info windows")]
     
@@ -44,7 +47,8 @@ public class deliveryChat : MonoBehaviour
     List<string> permit_Texts = new List<string>();
 
     [Header("Housechecks")]
-    [SerializeField] List<int> visitedHouses = new List<int>();
+    [SerializeField] List<int> visitedHousesID = new List<int>();
+    [SerializeField] List<int> visitedHousesPermit = new List<int>();
 
     [Header("Day specific variables")]
     [SerializeField] private bool day1;
@@ -52,7 +56,7 @@ public class deliveryChat : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] private GameObject inventoryWindow;
     [SerializeField] private GameObject invInfoWindow;
-    TMP_Text invInfoWindowText;
+    [SerializeField] private TMP_Text invInfoWindowText;
     [SerializeField] private GameObject invPref;
     [SerializeField] private Transform inventoryScroll;
     public package2 currentInvPackage;
@@ -61,8 +65,6 @@ public class deliveryChat : MonoBehaviour
     {
         infoWindow =  GameObject.Find("InfoWindow");
         infoWindowText = infoWindow.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
-
-        invInfoWindowText = infoWindow.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
 
         currentAddyHoverGO = GameObject.Find("hoverObject");
         currentAddyHover = currentAddyHoverGO.transform.GetChild(0).GetComponent<Text>();
@@ -93,9 +95,9 @@ public class deliveryChat : MonoBehaviour
             openInventory();
         }
 
-        if(currentViewedAddress >= 0 && currentAddyHover != null && !globalVariables.UI_Open){
+        if(previewAddress >= 0 && currentAddyHover != null && !globalVariables.UI_Open){
             currentAddyHoverGO.SetActive(true);
-            currentAddyHover.text = " Current House: " + currentViewedAddress;
+            currentAddyHover.text = " Current House: " + previewAddress;
         }else{
             currentAddyHoverGO.SetActive(false);   
         }
@@ -103,6 +105,7 @@ public class deliveryChat : MonoBehaviour
     }
 
     public void StartDelivery(int cur_address){
+        currentViewedAddress = cur_address;
         deliveryWindow.SetActive(true);
         currentAddy = GameObject.Find("currentHouseText").GetComponent<Text>();
 
@@ -121,7 +124,7 @@ public class deliveryChat : MonoBehaviour
     }
 
     public void HouseDisplay(int cur_address){
-        currentViewedAddress = cur_address;
+        previewAddress = cur_address;
     }
 
     // Put in a custom cursor to make this more intuitive
@@ -139,6 +142,7 @@ public class deliveryChat : MonoBehaviour
         invInfoWindow.SetActive(true);
 
         if(PackedUp.info != null){
+            Debug.Log("edgar");
             invInfoWindowText.SetText(PackedUp.info);
         }
     }
@@ -148,15 +152,21 @@ public class deliveryChat : MonoBehaviour
     }
 
     public void openPermitWindow(){
-        if(!visitedHouses.Contains(currentViewedAddress)){
-            visitedHouses.Add(currentViewedAddress);
-            string temp = "bogos binted";//genPack.generatePermit(isPackageAddress, packageDetails);
+        Debug.Log(currentViewedAddress);
+        Debug.Log(currentPackage.address);
+        
+        if(currentPackage == null){
+            permit_Text = "No package selected!";
+        }else if(currentViewedAddress != currentPackage.address){
+            permit_Text = "Wrong house, sorry";
+        }else if(!visitedHousesPermit.Contains(currentViewedAddress)){
+            visitedHousesPermit.Add(currentViewedAddress);
+            string temp = genPack.Generate_Permit(currentPackage);
             permit_Text = temp;
             permit_Texts.Add(temp);
         }else{
-
             Debug.Log("Repeat customer");
-            int i = visitedHouses.IndexOf(currentViewedAddress);
+            int i = visitedHousesPermit.IndexOf(currentViewedAddress);
             permit_Text = permit_Texts[i];
         }
 
@@ -168,7 +178,27 @@ public class deliveryChat : MonoBehaviour
     }
     
     public void openIDWindow(){
+        if(currentPackage == null){
+            ID_Text = "No package selected!";
+        }else if(currentViewedAddress != currentPackage.address){
+            ID_Text = "Wrong house, sorry";
+        }else if(!visitedHousesID.Contains(currentViewedAddress)){
+            visitedHousesID.Add(currentViewedAddress);
+            string temp = genPack.Generate_ID(currentPackage);
+            Debug.Log(temp);
+            
+            ID_Text = temp;
+            ID_Texts.Add(temp);
+        }else{
 
+            Debug.Log("Repeat customer");
+            int i = visitedHousesID.IndexOf(currentViewedAddress);
+            ID_Text = ID_Texts[i];
+        }
+
+        Permit_Window.SetActive(false);
+        ID_Window.SetActive(true);
+        ID_WindowText.SetText(permit_Text);
     }
 
     public void closeDeliveryUI(){
