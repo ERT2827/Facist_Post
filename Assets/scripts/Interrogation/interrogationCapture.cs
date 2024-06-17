@@ -10,6 +10,8 @@ public class interrogationCapture : MonoBehaviour
 
     [SerializeField] private int fine;
 
+    [SerializeField] private int interrogationDifficulty;
+
     public MailManager mailManager;
 
 
@@ -34,6 +36,8 @@ public class interrogationCapture : MonoBehaviour
             intController.SetActive(true);
 
             // Interrogation start
+            globalVariables.UI_Open = true;
+            intController.GetComponent<IntMiniGame>().difficulty = interrogationDifficulty;
             intController.GetComponent<IntMiniGame>().intCapture = this;
             intController.GetComponent<IntMiniGame>().StartInterrogation();
         }
@@ -48,7 +52,7 @@ public class interrogationCapture : MonoBehaviour
         {
             mailManager.fine += fine;
         }
-
         Destroy(this);
+        globalVariables.UI_Open = false;
     }
 }
