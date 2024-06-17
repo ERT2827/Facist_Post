@@ -49,6 +49,8 @@ public class MailManager : MonoBehaviour
     public GameObject packagePrefab;
     public List<GameObject> packages = new List<GameObject>();
 
+    public string nextScene;
+
     public void End()
     {
         if (timer <= 0)
@@ -60,6 +62,8 @@ public class MailManager : MonoBehaviour
 
             globalVariables.money += deliveries * 10;
             performanceAdequate = false;
+            //Loads the next scene. 
+            SceneManager.LoadScene(nextScene);
         }
     }
 
