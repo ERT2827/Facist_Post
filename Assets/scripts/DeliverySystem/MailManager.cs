@@ -24,7 +24,7 @@ public class MailManager : MonoBehaviour
 
     public int quota;
     public int deliveries;
-    // public int currentAdress = -1;
+    public int currentAdress = -1;
     public float timer;
 
     public AudioSource success;
@@ -33,6 +33,7 @@ public class MailManager : MonoBehaviour
     public Text quotaText;
     public Text timerText;
     public GameObject button;
+    private bool performanceAdequate;
 
     public List<GameObject> houses;
 
@@ -52,21 +53,22 @@ public class MailManager : MonoBehaviour
     {
         if (timer <= 0)
         {
-            if (quota < deliveries)
+            if (performanceAdequate)
             {
-                MenuManager.ResetGame();
-            }else if (quota >= deliveries)
-            {
-                MenuManager.LoadScene("Win");
+                globalVariables.money += 100;
             }
+
+            globalVariables.money += deliveries * 10;
+            performanceAdequate = false;
         }
     }
 
     private void MeetQuota()
     {
-        if (quota <= deliveries)
+        if (deliveries >= quota)
         {
             button.SetActive(true);
+            performanceAdequate = true;
         }
     }
 
