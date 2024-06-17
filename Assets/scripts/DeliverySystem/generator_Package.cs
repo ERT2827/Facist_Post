@@ -100,6 +100,12 @@ public class generator_Package : MonoBehaviour
         dateBool = false;
         IDBool = false;
         addressBool = false;
+
+        int wrongTarget = (Random.Range(0, 10) * wrongnessMult) / 10;
+
+        if(wrongTarget == 0){
+            package.correct = true;
+        }
         
         if(package.correct){
             return("Name: " + package.reciever + "\nContents: " + package.contents + "\nDate: " + package.date + "\n ID: " + package.ID);
@@ -109,7 +115,7 @@ public class generator_Package : MonoBehaviour
             string dateTemp;
             string IDTemp;
             
-            int wrongTarget = (Random.Range(0, 10) * wrongnessMult) / 10;
+            
 
             generate_Permit_WrongBools(wrongTarget);
 
@@ -184,7 +190,11 @@ public class generator_Package : MonoBehaviour
         IDBool = false;
         addressBool = false;
 
+        int wrongTarget = (Random.Range(0, 10) * wrongnessMult) / 10;
 
+        if(wrongTarget == 0){
+            package.correct = true;
+        }
         
         if(package.correct){
             return("ID: \nName: " + package.reciever + "\n ID: " + package.ID + "\nAddress: " + package.address);
@@ -193,7 +203,6 @@ public class generator_Package : MonoBehaviour
             string addressTemp;
             string IDTemp;
             
-            int wrongTarget = (Random.Range(0, 10) * wrongnessMult) / 10;
 
             generate_ID_WrongBools(wrongTarget);
 
