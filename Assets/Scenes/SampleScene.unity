@@ -32515,6 +32515,8 @@ MonoBehaviour:
   onRoadL: 5
   offRoadL: 4
   engineAudio: {fileID: 577151638}
+  anthemAudio: {fileID: 1910788500}
+  isMoving: 0
   playerRB: {fileID: 1872999659}
 --- !u!65 &1872999663
 BoxCollider:

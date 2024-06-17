@@ -48,6 +48,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     GameObject pos2;
 
     public AudioSource engineAudio;
+    public AudioSource anthemAudio;
     public bool isMoving;
     public Rigidbody playerRB;
 
@@ -60,6 +61,12 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
         stick = gearUI.transform.GetChild(1).gameObject;
         pos1 = gearUI.transform.GetChild(2).gameObject;
         pos2 = gearUI.transform.GetChild(3).gameObject;
+
+        globalVariables.day++;
+        if (globalVariables.day > 3)
+        {
+            anthemAudio.volume = 0.15f * (globalVariables.day - 3);
+        }
     }
 
 
