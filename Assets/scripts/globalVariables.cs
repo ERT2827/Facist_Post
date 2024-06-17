@@ -8,12 +8,14 @@ public class globalVariables
     [SerializeField] public static int money = 0;
 
     [SerializeField] public static bool dogAlive = true;
-    [SerializeField] public static int playerHunger;
-    [SerializeField] public static int playerHealth;
-    [SerializeField] public static int playerComfort;
+    [SerializeField] public static int playerHunger = 100;
+    [SerializeField] public static int playerHealth = 100;
+    [SerializeField] public static int playerComfort = 100;
 
-    [SerializeField] public static int dogHunger;
+    [SerializeField] public static int dogHunger = 100;
     [SerializeField] public static string dogName;
-    [SerializeField] public static int dogHealth;
-    [SerializeField] public static int dogComfort;
+    [SerializeField] public static int dogHealth = 100;
+    [SerializeField] public static int dogComfort = 100;
+
+    [SerializeField] public static int inflation = 1;
 }

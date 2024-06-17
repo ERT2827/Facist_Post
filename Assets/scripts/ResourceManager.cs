@@ -10,7 +10,7 @@ public class ResourceManager : MonoBehaviour
     public int max = 100;
     public Text billsText;
 
-    public int inflation;
+    public int inflation = 1;
 
     //These are the variables that need to be saved
 
@@ -42,6 +42,12 @@ public class ResourceManager : MonoBehaviour
     public GameObject playerMedButton;
     public GameObject dogMedButton;
     public GameObject panel;
+
+    public Text buyFoodText;
+    public Text buyDogFoodText;
+    public Text buyHeatText;
+    public Text buyPlayerMedText;
+    public Text buyDogMedText;
 
     
 
@@ -120,8 +126,8 @@ public class ResourceManager : MonoBehaviour
 
         PlayerSick();
         DogSick();
-        playerComfort -= 20;
-        dogComfort -= 20;
+        playerComfort -= 35;
+        dogComfort -= 35;
 
         globalVariables.money = money;
 
@@ -133,6 +139,8 @@ public class ResourceManager : MonoBehaviour
         globalVariables.dogHunger = dogHunger;
         globalVariables.dogHealth = dogHealth;
         globalVariables.dogComfort = dogComfort;
+
+        globalVariables.inflation = inflation;
     }
 
     //Randomly controls when health drops, based on comfort level; guaranteed health drop at low comfort levels
@@ -330,6 +338,8 @@ public class ResourceManager : MonoBehaviour
         dogHunger = globalVariables.dogHunger;
         dogHealth = globalVariables.dogHealth;
         dogComfort = globalVariables.dogComfort;
+
+        inflation = globalVariables.inflation;
     }
 
     void Start()
@@ -344,6 +354,12 @@ public class ResourceManager : MonoBehaviour
         dogNameText.text = dogName;
         PlayerText();
         DogText();
+
+        buyFoodText.text = "Buy Food: §" + 100 * inflation;
+        buyDogFoodText.text = "Buy Dog Food: §" + 80 * inflation;
+        buyHeatText.text = "Buy Heat: §" + 50 * inflation;
+        buyPlayerMedText.text = "Buy Medicine: §" + 60 * inflation;
+        buyDogMedText.text = "Buy Dog Medicine: §" + 60 * inflation;
 
         moneyText.text = "Remaining Balance: §" + money.ToString();
         

@@ -202,6 +202,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156384728}
   m_CullTransparentMesh: 1
+--- !u!114 &180477397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4446052855022717884, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
+  m_PrefabInstance: {fileID: 289774273}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &192881958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -604,11 +615,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb52594182ae164c86a80f986586125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dogAlive: 1
   money: 0
   moneyText: {fileID: 1233991935}
   max: 100
   billsText: {fileID: 946037880}
+  inflation: 1
+  dogAlive: 1
   playerHunger: 100
   playerHealth: 100
   playerComfort: 100
@@ -627,6 +639,11 @@ MonoBehaviour:
   playerMedButton: {fileID: 2015565355}
   dogMedButton: {fileID: 951814380}
   panel: {fileID: 156384728}
+  buyFoodText: {fileID: 926430216}
+  buyDogFoodText: {fileID: 2100776891}
+  buyHeatText: {fileID: 438731913}
+  buyPlayerMedText: {fileID: 444555632}
+  buyDogMedText: {fileID: 180477397}
 --- !u!114 &293937416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -912,6 +929,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7948267864324041390, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
   m_PrefabInstance: {fileID: 423935371}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &438731913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4446052855022717884, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
+  m_PrefabInstance: {fileID: 810780447}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &444555632 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4446052855022717884, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
+  m_PrefabInstance: {fileID: 1354240503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &461671012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,6 +1631,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8009477751913643353, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
   m_PrefabInstance: {fileID: 919675567}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &926430216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4446052855022717884, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
+  m_PrefabInstance: {fileID: 192881958}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &946037879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3012,6 +3062,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7948267864324041390, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
   m_PrefabInstance: {fileID: 1354240503}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2100776891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4446052855022717884, guid: 345b763b6ad8c654cb0e5b7eabe82647, type: 3}
+  m_PrefabInstance: {fileID: 919675567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2115826457
 GameObject:
   m_ObjectHideFlags: 0
