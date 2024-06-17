@@ -47,21 +47,21 @@ public class Package : MonoBehaviour
         GenPac();
     }
 
-    public void Deliver()
-    {
-        if (deliveryAdress == Manager.currentAdress)
-        {
-            Manager.success.Play();
-            Debug.Log("delivered");
-            Manager.deliveries += 1;
-            Destroy(gameObject);
-        }
-        else
-        {
-            Manager.failure.Play();
-            Debug.Log("wrong place");
-        }
-    }
+    // public void Deliver()
+    // {
+    //     if (deliveryAdress == Manager.currentAdress)
+    //     {
+    //         Manager.success.Play();
+    //         Debug.Log("delivered");
+    //         Manager.deliveries += 1;
+    //         Destroy(gameObject);
+    //     }
+    //     else
+    //     {
+    //         Manager.failure.Play();
+    //         Debug.Log("wrong place");
+    //     }
+    // }
 
 
 

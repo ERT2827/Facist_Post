@@ -8,6 +8,7 @@ public class package2 : MonoBehaviour
     public string info = "";
     public bool correct = true;
     public bool legal = false;
+    public int PIN = 0000;
 
     [Header("Active status")]
     public bool active = true;
@@ -20,6 +21,8 @@ public class package2 : MonoBehaviour
         int.TryParse(values[6], out durability);
 
         info = "Address: " + address + "\nContents: " + values[1] + "\nReciever: " + values[2] + "\nDate: " + values[3];
+
+        PIN = Random.Range(0001, 9999);
     }
 
     public void takeDamage(){

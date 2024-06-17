@@ -24,7 +24,7 @@ public class MailManager : MonoBehaviour
 
     public int quota;
     public int deliveries;
-    public int currentAdress = -1;
+    // public int currentAdress = -1;
     public float timer;
 
     public AudioSource success;
@@ -84,38 +84,40 @@ public class MailManager : MonoBehaviour
     }
 
     //tells the player object where it is
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("deliveryPoint"))
-        {
-        Place = other.gameObject;
-        house = Place.GetComponentInParent<House>();
-        currentAdress = House.adress;
-        Debug.Log("arriving at" + currentAdress);
-        }
-    }
+    // public void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag("deliveryPoint"))
+    //     {
+    //     Place = other.gameObject;
+    //     house = Place.GetComponentInParent<House>();
+    //     currentAdress = House.adress;
+    //     Debug.Log("arriving at" + currentAdress);
+    //     }
+    // }
     
 
     //resets adress
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("deliveryPoint"))
-        {
-            Debug.Log("now leaving" + currentAdress);
-            currentAdress = -1;
-            Place = null;
-            house = null;
-        }
-    }
+    // public void OnTriggerExit(Collider other)
+    // {
+    //     if (other.CompareTag("deliveryPoint"))
+    //     {
+    //         Debug.Log("now leaving" + currentAdress);
+    //         currentAdress = -1;
+    //         Place = null;
+    //         house = null;
+    //     }
+    // }
 
     // Start is called before the first frame update
     void Start()
     {
         ui_package.gameObject.SetActive(false);
         deliveries = 0;
-        currentAdress = -1;
+        // currentAdress = -1;
         Inventory.SetActive(false);
 
+        
+        createAddresses();
         setupPackages();
     }
 
@@ -132,10 +134,10 @@ public class MailManager : MonoBehaviour
         MeetQuota();
         End();
 
-        if (Input.GetKeyDown(KeyCode.E) && house != null)
-        {
-            deliverychat.StartDelivery(currentAdress);
-        }
+        // if (Input.GetKeyDown(KeyCode.E) && house != null)
+        // {
+        //     deliverychat.StartDelivery(currentAdress);
+        // }
     }
 
     void setupPackages(){

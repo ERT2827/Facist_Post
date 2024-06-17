@@ -15,7 +15,7 @@ public class UI_Package : MonoBehaviour
 
     public void DeliverButton()
     {
-        Package.Deliver();
+        // Package.Deliver();
     }
 
     void Update()

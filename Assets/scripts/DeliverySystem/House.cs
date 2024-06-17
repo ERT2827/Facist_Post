@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class House : MonoBehaviour
 {
     public int adress = 0;
-    public Collider houseCollider;
-
     public GameObject houseObject;
 
     deliveryChat delChat;
@@ -25,7 +23,6 @@ public class House : MonoBehaviour
             delChat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
         };
 
-        houseCollider = gameObject.GetComponent<Collider>();
         houseObject = gameObject;
     }
 
@@ -36,10 +33,10 @@ public class House : MonoBehaviour
     private void OnMouseOver() {
         delChat.HouseDisplay(adress);
 
-        Debug.Log("Piss");
+        // Debug.Log("Piss");
         
-        if(Input.GetMouseButtonDown(0)){
-            delChat.StartDelivery(adress);
+        if(Input.GetMouseButtonDown(0) && !globalVariables.UI_Open){
+            checkDistance();
         }
     }
 
@@ -51,6 +48,17 @@ public class House : MonoBehaviour
         adress = addy;
 
         transform.GetChild(transform.childCount -1).gameObject.GetComponent<signScript>().setDisplay(addy);
+    }
+
+    void checkDistance(){
+        GameObject playR = GameObject.FindWithTag("Player");
+
+        float distance = Vector3.Distance(transform.position, playR.transform.position);
+        
+
+        if(distance < 8){
+            delChat.StartDelivery(adress);
+        }
     }
 
 }

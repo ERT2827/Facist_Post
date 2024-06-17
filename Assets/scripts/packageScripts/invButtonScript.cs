@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class packageButtonScript : MonoBehaviour
+public class invButtonScript : MonoBehaviour
 {
     Button thisButton;
     public package2 parentPackage;
@@ -14,8 +14,6 @@ public class packageButtonScript : MonoBehaviour
         thisButton.onClick.AddListener(setActivePackage);
 
         delChat = GameObject.Find("Delivery_UI").GetComponent<deliveryChat>();
-
-        transform.GetChild(0).gameObject.GetComponent<Text>().text = "Package " + Random.Range(1000, 9999).ToString();
     }
 
     private void Update() {
@@ -26,10 +24,11 @@ public class packageButtonScript : MonoBehaviour
 
     public void setParentPackage(GameObject PP){
         parentPackage = PP.GetComponent<package2>();
+        transform.GetChild(0).gameObject.GetComponent<Text>().text = "Package " + parentPackage.PIN.ToString();
     }
 
     void setActivePackage(){
-        delChat.setCurrentPack(parentPackage);
+        delChat.setCurrentInvPack(parentPackage);
     }
 
 

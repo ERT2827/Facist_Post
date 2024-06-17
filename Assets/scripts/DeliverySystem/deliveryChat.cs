@@ -48,11 +48,21 @@ public class deliveryChat : MonoBehaviour
 
     [Header("Day specific variables")]
     [SerializeField] private bool day1;
+
+    [Header("Inventory")]
+    [SerializeField] private GameObject inventoryWindow;
+    [SerializeField] private GameObject invInfoWindow;
+    TMP_Text invInfoWindowText;
+    [SerializeField] private GameObject invPref;
+    [SerializeField] private Transform inventoryScroll;
+    public package2 currentInvPackage;
     
     void Awake()
     {
         infoWindow =  GameObject.Find("InfoWindow");
         infoWindowText = infoWindow.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+
+        invInfoWindowText = infoWindow.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
 
         currentAddyHoverGO = GameObject.Find("hoverObject");
         currentAddyHover = currentAddyHoverGO.transform.GetChild(0).GetComponent<Text>();
@@ -68,16 +78,22 @@ public class deliveryChat : MonoBehaviour
 
     private void Start() {
         deliveryWindow.SetActive(false);
+        inventoryWindow.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(Input.GetKeyDown(KeyCode.Escape) && globalVariables.UI_Open){
             closeDeliveryUI();
+            closeInventoryUI();
         }
 
-        if(currentViewedAddress >= 0 && currentAddyHover != null){
+        if(Input.GetMouseButtonDown(1) && !globalVariables.UI_Open){
+            openInventory();
+        }
+
+        if(currentViewedAddress >= 0 && currentAddyHover != null && !globalVariables.UI_Open){
             currentAddyHoverGO.SetActive(true);
             currentAddyHover.text = " Current House: " + currentViewedAddress;
         }else{
@@ -90,11 +106,18 @@ public class deliveryChat : MonoBehaviour
         deliveryWindow.SetActive(true);
         currentAddy = GameObject.Find("currentHouseText").GetComponent<Text>();
 
+        globalVariables.UI_Open = true;
+
         currentAddy.text = " Address: " + cur_address;
 
         /* You need to make the button deliver the package that's selected,
         and also make it so that the info window displays information about the panel.
         I'll add the minigames later */
+    }
+
+    public void openInventory(){
+        inventoryWindow.SetActive(true);
+        globalVariables.UI_Open = true;
     }
 
     public void HouseDisplay(int cur_address){
@@ -109,6 +132,14 @@ public class deliveryChat : MonoBehaviour
 
         if(PackedUp.info != null){
             infoWindowText.SetText(PackedUp.info);
+        }
+    }
+    public void setCurrentInvPack(package2 PackedUp){
+        currentInvPackage = PackedUp;
+        invInfoWindow.SetActive(true);
+
+        if(PackedUp.info != null){
+            invInfoWindowText.SetText(PackedUp.info);
         }
     }
 
@@ -148,6 +179,15 @@ public class deliveryChat : MonoBehaviour
 
         Permit_WindowText.SetText("");
         ID_WindowText.SetText("");
+
+        globalVariables.UI_Open = false;
+    }
+    
+    public void closeInventoryUI(){
+        inventoryWindow.SetActive(false);
+        invInfoWindow.SetActive(false);
+
+        globalVariables.UI_Open = false;
     }
 
     public void createUI(List<GameObject> packs){
@@ -162,17 +202,21 @@ public class deliveryChat : MonoBehaviour
                 {
                     GameObject myNewPackage = Instantiate(packagePref, packageScroll.transform);
                     myNewPackage.GetComponent<packageButtonScript>().setParentPackage(packs[i]);
+
+                    GameObject myNewInvPackage = Instantiate(invPref, inventoryScroll);
+                    myNewInvPackage.GetComponent<invButtonScript>().setParentPackage(packs[i]);
                 }
             }else{
-                Debug.Log("Shit");
+                // Debug.Log("Shit");
             }
         }
     }
 
     public void deliver(){
-        if(day1){
+        if(day1 && currentViewedAddress == currentPackage.address){
             mailBoss.deliveries += 1;
             currentPackage.setinactive();
+            Debug.Log(mailBoss.deliveries);
         }else if(currentViewedAddress == currentPackage.address && currentPackage.correct && currentPackage.legal){
             mailBoss.deliveries += 1;
             currentPackage.setinactive();
@@ -184,4 +228,6 @@ public class deliveryChat : MonoBehaviour
         
         
     }
+
+   
 }

@@ -87,8 +87,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adress: 0
-  houseName: 
-  houseCollider: {fileID: 0}
+  houseObject: {fileID: 0}
+--- !u!65 &1752251401392490985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2522229770216785944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02000001, y: 0.020000005, z: 0.020000005}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2903434383432061602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed1c5aea0f52a344e916dd9d1de6bee1, type: 3}

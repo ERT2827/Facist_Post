@@ -9,7 +9,7 @@ public class signScript : MonoBehaviour
     
     private void Start() {
         setDisplay(0);
-        signText = gameObject.transform.GetChild(1).GetChild(0).GetComponent<Text>();
+        // signText = game  Object.transform.GetChild(1).GetChild(0).GetComponent<Text>();
     }
     
     public void setDisplay(int addy){
