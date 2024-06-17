@@ -59,10 +59,10 @@ public class MailManager : MonoBehaviour
         {
             if (performanceAdequate)
             {
-                globalVariables.money += 100;
+                globalVariables.money += 140;
             }
 
-            globalVariables.money += deliveries * 10;
+            globalVariables.money += deliveries * 5;
             performanceAdequate = false;
             //Loads the next scene. 
             SceneManager.LoadScene(nextScene);
