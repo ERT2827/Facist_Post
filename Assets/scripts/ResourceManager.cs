@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class ResourceManager : MonoBehaviour
     public Text buyPlayerMedText;
     public Text buyDogMedText;
 
-    
+    public string nextScene;
 
     //Purchase functions
     public void BuyFood()
@@ -371,6 +372,17 @@ public class ResourceManager : MonoBehaviour
             dogAlive = false;
         }
 
+        if (globalVariables.day == 1)
+        {
+            nextScene = "Day2";
+        }else if (globalVariables.day == 2)
+        {
+            nextScene = "Day3";
+        }else if (globalVariables.day == 3)
+        {
+            nextScene = "Victory";
+        }
+
         //Prevents runaway stat buildup
         if (dogHunger > max)
         {
@@ -403,5 +415,10 @@ public class ResourceManager : MonoBehaviour
     {
         dogName = s;
         Debug.Log(dogName);
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(nextScene);
     }
 }

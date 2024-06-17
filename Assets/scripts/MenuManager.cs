@@ -39,5 +39,6 @@ public class MenuManager : MonoBehaviour
         {
             OpenMenu();
         }
+
     }
 }
