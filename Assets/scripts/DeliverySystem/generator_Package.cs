@@ -102,7 +102,7 @@ public class generator_Package : MonoBehaviour
         addressBool = false;
         
         if(package.correct){
-            return("Name: " + package.name + "\nContents: " + package.contents + "\nDate: " + package.date + "\n ID: " + package.ID);
+            return("Name: " + package.reciever + "\nContents: " + package.contents + "\nDate: " + package.date + "\n ID: " + package.ID);
         }else{
             string nameTemp;
             string contentTemp;
@@ -116,7 +116,7 @@ public class generator_Package : MonoBehaviour
             if(nameBool){
                 nameTemp = names[Random.Range(0, names.Length - 1)];
             }else{
-                nameTemp = package.name;
+                nameTemp = package.reciever;
             }
             if(contentBool){
                 contentTemp = legalPackages[Random.Range(0, legalPackages.Length - 1)];  
@@ -187,7 +187,7 @@ public class generator_Package : MonoBehaviour
 
         
         if(package.correct){
-            return("ID: \nName: " + package.name + "\n ID: " + package.ID + "\nAddress: " + package.address);
+            return("ID: \nName: " + package.reciever + "\n ID: " + package.ID + "\nAddress: " + package.address);
         }else{
             string nameTemp;
             string addressTemp;
@@ -200,7 +200,7 @@ public class generator_Package : MonoBehaviour
             if(nameBool){
                 nameTemp = names[Random.Range(0, names.Length - 1)];
             }else{
-                nameTemp = package.name;
+                nameTemp = package.reciever;
             }
             if(IDBool){
                 IDTemp = Random.Range(111111111, 999999999).ToString();;

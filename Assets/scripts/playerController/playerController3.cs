@@ -76,7 +76,9 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     {
         move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)){
+        if(globalVariables.UI_Open){
+            gearUI.SetActive(false);
+        }else if(Input.GetKeyDown(KeyCode.LeftShift)){
 
             Debug.Log("Shifting Gears");
             gear = !gear;

@@ -15,6 +15,7 @@ public class deliveryChat : MonoBehaviour
     public int previewAddress;
 
     [SerializeField] private generator_Package genPack;
+    public int inactivePackages;
 
     [Header("info windows")]
     
@@ -184,13 +185,10 @@ public class deliveryChat : MonoBehaviour
             ID_Text = "Wrong house, sorry";
         }else if(!visitedHousesID.Contains(currentViewedAddress)){
             visitedHousesID.Add(currentViewedAddress);
-            string temp = genPack.Generate_ID(currentPackage);
-            Debug.Log(temp);
-            
+            string temp = genPack.Generate_ID(currentPackage);            
             ID_Text = temp;
             ID_Texts.Add(temp);
         }else{
-
             Debug.Log("Repeat customer");
             int i = visitedHousesID.IndexOf(currentViewedAddress);
             ID_Text = ID_Texts[i];
@@ -198,7 +196,7 @@ public class deliveryChat : MonoBehaviour
 
         Permit_Window.SetActive(false);
         ID_Window.SetActive(true);
-        ID_WindowText.SetText(permit_Text);
+        ID_WindowText.SetText(ID_Text);
     }
 
     public void closeDeliveryUI(){
@@ -247,7 +245,7 @@ public class deliveryChat : MonoBehaviour
             mailBoss.deliveries += 1;
             currentPackage.setinactive();
             Debug.Log(mailBoss.deliveries);
-        }else if(currentViewedAddress == currentPackage.address && currentPackage.correct && currentPackage.legal){
+        }else if(currentViewedAddress == currentPackage.address && currentPackage.correct){
             mailBoss.deliveries += 1;
             currentPackage.setinactive();
             Debug.Log("Hooray");
@@ -256,7 +254,20 @@ public class deliveryChat : MonoBehaviour
             Debug.Log("Gulag");
         }
         
-        
+        inactivePackages += 1;
+    }
+
+    public void reject(){
+        if(currentViewedAddress == currentPackage.address && !currentPackage.correct){
+            mailBoss.deliveries += 1;
+            currentPackage.setinactive();
+            Debug.Log("Hooray");
+        }else{
+            currentPackage.setinactive();
+            Debug.Log("Gulag"); 
+        }
+
+        inactivePackages += 1;
     }
 
    

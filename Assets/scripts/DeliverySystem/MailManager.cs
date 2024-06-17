@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MailManager : MonoBehaviour
 {
@@ -30,12 +31,13 @@ public class MailManager : MonoBehaviour
     public AudioSource success;
     public AudioSource failure;
 
-    public Text quotaText;
+    public TMP_Text quotaText;
     public Text timerText;
     public GameObject button;
     private bool performanceAdequate;
 
     public List<GameObject> houses;
+
 
     [Header("Delivery box")]
 
@@ -137,9 +139,14 @@ public class MailManager : MonoBehaviour
         string timerString = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);
 
         timerText.text = timerString;
-        quotaText.text = "Quota: " + deliveries.ToString() + "/" + quota.ToString();
+        quotaText.SetText( "Quota: " + quota.ToString() + "\nDeliveries: " + deliveries.ToString() );
         MeetQuota();
         End();
+
+        if(deliverychat.inactivePackages >= quota){
+            setupPackages();
+            deliverychat.inactivePackages = 0;
+        }
 
         // if (Input.GetKeyDown(KeyCode.E) && house != null)
         // {
@@ -161,6 +168,19 @@ public class MailManager : MonoBehaviour
 
         deliverychat.createUI(packages);
 
+    }
+
+    void morePackages(){
+        for (int i = 0; i < quota; i++)
+        {
+            GameObject pac = Instantiate(packagePrefab, Inventory.transform);
+            string[] packInfo = genPac.Generate_Package(true);
+            pac.GetComponent<package2>().setValues(packInfo);
+
+            packages.Add(pac);
+        }
+
+        deliverychat.createUI(packages);
     }
 
     void createAddresses(){
