@@ -10,7 +10,14 @@ public class Playerdata {
     public int slips = 0;
 
     // Resources
+    public int playerHun = 100;
     public int playerHP = 100;
+    public int playerCom = 100;
+    public bool Alive = true;
+    public string dName;
+    public int dogHun = 100;
+    public int dogHP = 100;
+    public int dogCom = 100;
 
     // Level unlocks
     public bool level1Complete = false;
@@ -47,7 +54,14 @@ public class Playerdata {
 
         // Resources
 
+        /*playerHun = Player.playerHun;
         playerHP = Player.playerHP;
+        playerCom = Player.playerCom;
+        Alive = Player.Alive;
+        dName = Player.dName;
+        dogHun = Player.dogHun;
+        dogHP = Player.dogHP;
+        dogCom = Player.dogCom;*/
 
         // Level unlocks
         level1Complete = Player.level1Complete;
@@ -78,5 +92,16 @@ public class Playerdata {
 
     }
 
+    public Playerdata(ResourceManager resourceManager)
+    {
+        playerHun = resourceManager.playerHunger;
+        playerHP = resourceManager.playerHealth;
+        playerCom = resourceManager.playerComfort;
+        Alive = resourceManager.dogAlive;
+        dName = resourceManager.dogName;
+        dogHun = resourceManager.dogHunger;
+        dogHP = resourceManager.dogHealth;
+        dogCom = resourceManager.dogComfort;
+    }
 
 }

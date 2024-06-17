@@ -80,7 +80,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
             }
         }
 
-        // EngineAudio();
+        EngineAudio();
 
         //Dodging code
 
@@ -98,24 +98,33 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
         gearSpeed();
     }
 
-    // private void EngineAudio()
-    // {
-    //     if (gear)
-    //     {
-    //         engineAudio.pitch = 1;
-    //     }else
-    //     {
-    //         engineAudio.pitch = 0.5f;
-    //     }
+    private void EngineAudio()
+    {
+        if (gear)
+        {
+            engineAudio.pitch = 0.8f;
+        }else
+        {
+            engineAudio.pitch = 0.5f;
+        }
 
-    //     if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
-    //     {
-    //         engineAudio.Play();
-    //     }else
-    //     {
-    //         engineAudio.Pause();
-    //     }
-    // }
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            engineAudio.Play();
+        }else if (Input.GetButtonUp("Horizontal"))
+        {
+            engineAudio.Pause();
+        }
+
+        if (Input.GetButtonDown("Vertical"))
+        {
+            engineAudio.Play();
+        }
+        else if (Input.GetButtonUp("Vertical"))
+        {
+            engineAudio.Pause();
+        }
+    }
 
     void movePlayer(){
         // Add slowing on different terrain

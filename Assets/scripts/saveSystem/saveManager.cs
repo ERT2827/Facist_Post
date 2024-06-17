@@ -9,7 +9,14 @@ public class saveManager : MonoBehaviour
     public int slips = 0;
 
     [Header("Resources")]
+    public int playerHun = 100;
     public int playerHP = 100;
+    public int playerCom = 100;
+    public bool Alive = true;
+    public string dName;
+    public int dogHun = 100;
+    public int dogHP = 100;
+    public int dogCom = 100;
 
     [Header("Level Unlocks")]
 
@@ -42,6 +49,11 @@ public class saveManager : MonoBehaviour
 
     public int lastSlips = 0; //This tracks the number of slips from the end of the last level.
 
+    private void Awake()
+    {
+        loadGame();
+    }
+
     private void Start() {
     }
 
@@ -56,7 +68,14 @@ public class saveManager : MonoBehaviour
 
         // Resources
 
+        playerHun = data.playerHun;
         playerHP = data.playerHP;
+        playerCom = data.playerCom;
+        Alive = data.Alive;
+        dName = data.dName;
+        dogHun = data.dogHun;
+        dogHP = data.dogHP;
+        dogCom = data.dogCom;
 
         // Level unlocks
         level1Complete = data.level1Complete;
@@ -90,7 +109,14 @@ public class saveManager : MonoBehaviour
     public void resetprogress(){
         slips = 0;
 
+        playerHun = 100;
         playerHP = 100;
+        playerCom = 100;
+        Alive = true;
+        dName = null;
+        dogHun = 100;
+        dogHP = 100;
+        dogCom = 100;
 
         level1Complete = false;
         bestSlip1 = 0; 
