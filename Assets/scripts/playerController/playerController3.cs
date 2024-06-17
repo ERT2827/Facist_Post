@@ -63,6 +63,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
         pos2 = gearUI.transform.GetChild(3).gameObject;
 
         globalVariables.day++;
+        globalVariables.inflation += 2;
         if (globalVariables.day > 1)
         {
             anthemAudio.volume = 0.15f * (globalVariables.day - 1);

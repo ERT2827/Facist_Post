@@ -18,5 +18,5 @@ public class globalVariables
     [SerializeField] public static int dogHealth = 100;
     [SerializeField] public static int dogComfort = 100;
 
-    [SerializeField] public static int inflation = 1;
+    [SerializeField] public static int inflation = -1;
 }
