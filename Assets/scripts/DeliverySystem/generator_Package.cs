@@ -29,8 +29,6 @@ public class generator_Package : MonoBehaviour
 
     private void Awake() {
         mailManager = gameObject.GetComponent<MailManager>();
-
-        Debug.Log(possibleAdresses.Count);
     }
 
 
@@ -76,7 +74,7 @@ public class generator_Package : MonoBehaviour
 
         string[] packageInfo = {address, contents, reciever, date, correct, durability, ID};
 
-        Debug.Log(packageInfo[0] + packageInfo[1] + packageInfo[2] + packageInfo[3] + packageInfo[4]);
+        // Debug.Log(packageInfo[0] + packageInfo[1] + packageInfo[2] + packageInfo[3] + packageInfo[4]);
 
         return packageInfo;
     }

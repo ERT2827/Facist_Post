@@ -15,6 +15,7 @@ public class deliveryChat : MonoBehaviour
     public int previewAddress;
 
     [SerializeField] private generator_Package genPack;
+    [SerializeField] private int fineAmount;
     public int inactivePackages;
 
     [Header("info windows")]
@@ -153,8 +154,8 @@ public class deliveryChat : MonoBehaviour
     }
 
     public void openPermitWindow(){
-        Debug.Log(currentViewedAddress);
-        Debug.Log(currentPackage.address);
+        // Debug.Log(currentViewedAddress);
+        // Debug.Log(currentPackage.address);
         
         if(currentPackage == null){
             permit_Text = "No package selected!";
@@ -224,7 +225,7 @@ public class deliveryChat : MonoBehaviour
             // Creates the packages in the UI
 
             if(packs != null){
-                Debug.Log(packs.Count);
+                // Debug.Log(packs.Count);
                 
                 for (int i = 0; i < packs.Count; i++)
                 {
@@ -252,6 +253,8 @@ public class deliveryChat : MonoBehaviour
         }else{
             currentPackage.setinactive();
             Debug.Log("Gulag");
+
+            mailBoss.fine += fineAmount;
         }
         
         inactivePackages += 1;
@@ -265,6 +268,8 @@ public class deliveryChat : MonoBehaviour
         }else{
             currentPackage.setinactive();
             Debug.Log("Gulag"); 
+
+            mailBoss.fine += fineAmount;
         }
 
         inactivePackages += 1;

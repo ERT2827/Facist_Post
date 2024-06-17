@@ -13,7 +13,7 @@ public class signScript : MonoBehaviour
     }
     
     public void setDisplay(int addy){
-        Debug.Log("Bingus");
+        // Debug.Log("Bingus");
         transform.rotation = Quaternion.Euler(0, 0, 0);
         signText.text = addy.ToString();    
     }

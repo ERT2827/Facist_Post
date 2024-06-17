@@ -15,12 +15,11 @@ public class interrogationCapture : MonoBehaviour
     public MailManager mailManager;
 
 
-    private void Awake()
-    {
-        intWindow = GameObject.Find("InterrogationWindow");
-        intController = GameObject.Find("InterrogationController");
-        intMini = intController.GetComponent<IntMiniGame>();
-    }
+    // private void Awake()
+    // {
+    //     intWindow = GameObject.Find("InterrogationWindow");
+    //     intController = GameObject.Find("InterrogationController");
+    // }
 
     private void Start()
     {

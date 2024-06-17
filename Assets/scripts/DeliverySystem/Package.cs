@@ -44,7 +44,7 @@ public class Package : MonoBehaviour
         mailManager = manager.GetComponent<MailManager>();
         GameObject ui = GameObject.Find("PackageDisplay");
         ui_package = ui.GetComponent<UI_Package>();
-        GenPac();
+        // GenPac();
     }
 
     // public void Deliver()
