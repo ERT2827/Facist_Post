@@ -16,6 +16,7 @@ public class IntMiniGame : MonoBehaviour
     }
 
     public List<string> TypeList = new List<string>();
+    public interrogationCapture intCapture;
 
     public Slider Timer;
     public TextMeshProUGUI kbText;
@@ -40,7 +41,7 @@ public class IntMiniGame : MonoBehaviour
     public char pressCorrect;
     public int difficulty;
 
-    private void Start()
+    public void StartInterrogation()
     {
         minigameSelect.Clear();
         minigameSelect.Add(0);
@@ -312,11 +313,11 @@ public class IntMiniGame : MonoBehaviour
         {
             if (Success >= difficulty)
             {
-                Debug.Log("Win");
+                intCapture.EndInterrogation(true);
             }
             else
             {
-                Debug.Log("Lose");
+                intCapture.EndInterrogation(false);
             }
         }
     }

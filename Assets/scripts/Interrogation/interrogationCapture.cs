@@ -9,23 +9,40 @@ public class interrogationCapture : MonoBehaviour
     [SerializeField] private IntMiniGame intMini;
 
 
-    private void Awake() {
+    private void Awake()
+    {
         intWindow = GameObject.Find("InterrogationWindow");
         intController = GameObject.Find("InterrogationController");
         intMini = intController.GetComponent<IntMiniGame>();
     }
 
-    private void Start() {
+    private void Start()
+    {
         intWindow.SetActive(false);
         intController.SetActive(false);
     }
-    
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Player") {
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
             intWindow.SetActive(true);
-            intController.SetActive(true); 
+            intController.SetActive(true);
 
             // Interrogation start
+            intController.GetComponent<IntMiniGame>().StartInterrogation();
         }
+    }
+
+    public void EndInterrogation(bool win)
+    {
+        intWindow.SetActive(false);
+        intController.SetActive(false);
+
+        if (!win)
+        {
+
+        }
+
     }
 }
