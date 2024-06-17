@@ -148,9 +148,9 @@ public class ResourceManager : MonoBehaviour
     {
         int value;
         value = Random.Range(playerComfort, 100);
-        if (value <= 60 || playerComfort < 40)
+        if (value <= 90 || playerComfort < 40)
         {
-            playerHealth -= 40;
+            playerHealth -= 30;
             playerComfort -= 20;
             dogComfort -= 20;
         }
@@ -160,9 +160,9 @@ public class ResourceManager : MonoBehaviour
     {
         int value;
         value = Random.Range(dogComfort, 100);
-        if (value <= 60 || dogComfort < 40)
+        if (value <= 90 || dogComfort < 40)
         {
-            dogHealth -= 40;
+            dogHealth -= 30;
             dogComfort -= 20;
             playerComfort -= 20;
         }
