@@ -6,7 +6,7 @@ public class globalVariables
 {
     [SerializeField] public static bool UI_Open = false;
     [SerializeField] public static int money = 0;
-    [SerializeField] public static int day = 1;
+    [SerializeField] public static int day = 0;
 
     [SerializeField] public static bool dogAlive = true;
     [SerializeField] public static int playerHunger = 100;

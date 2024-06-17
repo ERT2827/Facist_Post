@@ -66,7 +66,12 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
         if (globalVariables.day > 1)
         {
             anthemAudio.volume = 0.15f * (globalVariables.day - 1);
+        }else
+        {
+            anthemAudio.volume = 0;
         }
+
+        Debug.Log(globalVariables.day);
     }
 
 
