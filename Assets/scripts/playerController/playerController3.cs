@@ -48,6 +48,7 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     GameObject pos2;
 
     public AudioSource engineAudio;
+    public bool isMoving;
     //public Rigidbody playerRB;
 
 
@@ -102,27 +103,29 @@ public class playerController3 : MonoBehaviour //Or indeed, tokyo drift
     {
         if (gear)
         {
-            engineAudio.pitch = 0.8f;
+            engineAudio.pitch = 0.5f;
         }else
         {
-            engineAudio.pitch = 0.5f;
+            engineAudio.pitch = 0.4f;
         }
 
-        if (Input.GetButtonDown("Horizontal"))
+        if (isMoving)
         {
             engineAudio.Play();
-        }else if (Input.GetButtonUp("Horizontal"))
+        }else if (!isMoving)
         {
             engineAudio.Pause();
         }
 
-        if (Input.GetButtonDown("Vertical"))
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
-            engineAudio.Play();
+            isMoving = true;
+            Debug.Log("go");
         }
-        else if (Input.GetButtonUp("Vertical"))
+        else if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
         {
-            engineAudio.Pause();
+            isMoving = false;
+            Debug.Log("stop");
         }
     }
 
